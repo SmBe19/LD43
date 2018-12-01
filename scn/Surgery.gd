@@ -156,7 +156,6 @@ func randomize_field(entries, colors):
 	for y in range(height):
 		for x in range(width):
 			if not is_border(x, y):
-				pass
 				field[y][x] = -1
 				rects[y][x].modulate = Color(1, 1, 1)
 			elif field[y][x] == 1:
@@ -172,6 +171,8 @@ func check_field():
 		for x in range(width):
 			if field[y][x] != -1 and self.is_border(x, y):
 				bord.append([x, y])
+			if not self.is_border(x, y):
+				rects[y][x].modulate = Color(1, 1, 1)
 			row.append(0)
 		fld.append(row)
 	var starts = 0
@@ -189,19 +190,29 @@ func check_field():
 				break
 			var nx
 			var ny
-			var dirs = [
+			var dirss = [
 				[[-1, 0], [1, 0]],
 				[[0, -1], [0, 1]],
 				[[1, 0], [0, 1]],
 				[[0, 1], [-1, 0]],
 				[[-1, 0], [0, -1]],
 				[[0, -1], [1, 0]],
-			][field[y][x]]
+			]
+			var dirs = dirss[field[y][x]]
 			var found_dir = false
 			for dir in dirs:
 				nx = x + dir[0]
 				ny = y + dir[1]
 				if is_valid(nx, ny) and fld[ny][nx] == 0 and field[ny][nx] != -1:
+					var odirs = dirss[field[ny][nx]]
+					var pos = false
+					for odir in odirs:
+						var nnx = nx + odir[0]
+						var nny = ny + odir[1]
+						if nnx == x and nny == y:
+							pos = true
+					if not pos:
+						continue
 					x = nx
 					y = ny
 					fld[y][x] = 1
