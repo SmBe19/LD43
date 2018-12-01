@@ -171,6 +171,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="HUD" parent="." index="1" instance=ExtResource( 10 )]
 
+waitingSpeedAcc = 0.0005
+
 [connection signal="buy_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_buy_organ"]
 
 [connection signal="sell_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_sell_organ"]

@@ -20,15 +20,19 @@ func start_surgery(entries, colors):
 	visible = true
 	self.randomize_field(entries, colors)
 	emit_signal("start_puzzle")
+	$ShowHideAnimation.play("Show")
 	
 	# TODO remove
 	#visible = false
 	#emit_signal("finished_puzzle")
 
 func finish_surgery(result):
-	globals.organ_drag_drop_enabled = false
-	visible = false
+	globals.organ_drag_drop_enabled = true
+	$ShowHideAnimation.play("Hide")
 	emit_signal(result)
+	
+func hiding_finished():
+	visible = false
 
 func _ready():
 	self.generate_field()

@@ -3,6 +3,7 @@ extends Node
 signal waiting_room_full
 
 export(float) var waitingSpeed = 0.05
+export(float) var waitingSpeedAcc = 0.0005
 var waiting = 0
 var score = 0
 var survived = 0
@@ -44,6 +45,7 @@ func _ready():
 
 func _process(delta):
 	waiting += delta * waitingSpeed
+	waitingSpeed += delta * waitingSpeedAcc
 	$Waiting.value = waiting
 	if waiting > $Waiting.max_value:
 		emit_signal("waiting_room_full")

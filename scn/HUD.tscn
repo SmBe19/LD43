@@ -60,10 +60,11 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[node name="HUD" type="Node"]
+[node name="HUD" type="Node" index="0"]
 
 script = ExtResource( 1 )
 waitingSpeed = 0.05
+waitingSpeedAcc = 0.0005
 
 [node name="Money" type="Label" parent="." index="0"]
 
