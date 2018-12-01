@@ -19,8 +19,8 @@ func randomize_organs():
 	organs[globals.ORGANS.HEART] = rand_bool(0.8)
 	organs[globals.ORGANS.LUNGS] = rand_bool(0.5)
 	organs[globals.ORGANS.LIVER] = rand_bool(0.5)
-	organs[globals.ORGANS.LKIDNEY] = rand_bool(0.2)
-	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.2)
+	organs[globals.ORGANS.LKIDNEY] = rand_bool(0.5)
+	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.5)
 	self.apply_organs()
 
 func copy_organs(dude):

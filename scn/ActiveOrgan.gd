@@ -9,11 +9,12 @@ var textures = {
 	globals.ORGANS.HEART: preload("res://img/heart.png"),
 	globals.ORGANS.LUNGS: preload("res://img/lungs.png"),
 	globals.ORGANS.LIVER: preload("res://img/liver.png"),
-	globals.ORGANS.LKIDNEY: preload("res://img/kidney.png"),
-	globals.ORGANS.RKIDNEY: preload("res://img/kidney.png"),
+	globals.ORGANS.LKIDNEY: preload("res://img/lkidney.png"),
+	globals.ORGANS.RKIDNEY: preload("res://img/rkidney.png"),
 }
 
 func set(dude, organ):
+	reset()
 	self.active = true
 	self.dude = dude
 	self.organ = organ
@@ -28,6 +29,12 @@ func reset():
 	organ = 0
 	receiver = null
 	$Sprite.texture = null
+	$FallAnimation.stop(true)
+
+func maybe_receiver():
+	if receiver != null:
+		receiver.receive_organ(organ)
+		reset()
 
 func on_finished_falling():
 	if receiver != null:

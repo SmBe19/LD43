@@ -7,9 +7,10 @@ signal drop_organ(organ)
 enum ORGANS {BRAIN, HEART, LUNGS, LIVER, LKIDNEY, RKIDNEY}
 
 export(Texture) var texture
-export(BitMap) var click_mask
-export(bool) var mirror
 export(ORGANS) var organ_type
+
+const width = 64
+const height = 64
 
 var present = false setget present_set, present_get
 
@@ -28,17 +29,29 @@ func present_get():
 
 func _ready():
 	$Sprite.texture = texture
-	$Sprite.scale.x = -1 if mirror else 1
-	$ButtonTakeOrgan.texture_click_mask = click_mask
 
-func get_drag_data(position):
-	if not present:
-		return null
-	emit_signal("take_organ", organ_type)
-	return organ_type
+func should_accept_input(position):
+	var image = texture.get_data()
+	image.lock()
+	var pixel = image.get_pixel(int(position.x), int(position.y))
+	image.unlock()
+	return pixel.a > 0.2
 
-func can_drop_data(position, data):
-	return data == organ_type and not present
+func is_inside(position):
+	if abs(position.x) < width/2 and abs(position.y) < height/2:
+		return true
+	return false
 
-func drop_data(position, data):
-	emit_signal("drop_organ", organ_type)
+func to_nice_local(position):
+	return position + Vector2(width/2, height/2)
+
+func _input(event):
+	if event is InputEventMouseButton:
+		var local_pos = get_local_mouse_position()
+		if self.is_inside(local_pos):
+			var nice_local_pos = self.to_nice_local(local_pos)
+			if self.should_accept_input(nice_local_pos):
+				if event.is_pressed():
+					emit_signal("take_organ", organ_type)
+				else:
+					emit_signal("drop_organ", organ_type)
