@@ -3,14 +3,19 @@ extends Node2D
 signal take_organ_from_dude(dude, organ)
 signal drop_organ_to_dude(dude, organ)
 
-var brain = true
-var heart = true
-var lungs = true
-var liver = true
-var lkidney = true
-var rkidney = true
 var organs = {}
 var orig_organs = {}
+var alive = false
+var alive_since = 0
+const base_lifetime = 60
+const lifetimes = [40, 40, 30, 10, 10, 10]
+var max_lifetime = 100
+
+func _ready():
+	max_lifetime = base_lifetime
+	for i in range(6):
+		max_lifetime += lifetimes[i]
+	$LifeBar.max_value = max_lifetime
 
 func rand_bool(prob):
 	return randf() < prob
@@ -24,6 +29,8 @@ func randomize_organs():
 	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.2)
 	for k in organs:
 		orig_organs[k] = organs[k]
+	alive_since = 0
+	alive = true
 	self.apply_organs()
 
 func copy_organs(dude):
@@ -31,14 +38,20 @@ func copy_organs(dude):
 		organs[k] = dude.organs[k]
 	for k in organs:
 		orig_organs[k] = organs[k]
+	alive_since = 0
+	alive = true
 	self.apply_organs()
 
 func receive_organ(organ):
+	if not alive:
+		return
 	if not organs[organ]:
 		organs[organ] = true
 		self.apply_organs()
 
 func get_score():
+	if not alive:
+		return -17
 	var score = 0
 	for i in range(6):
 		if not organs[i]:
@@ -48,6 +61,24 @@ func get_score():
 		if organs[i] and not orig_organs[i]:
 			score += 2
 	return score
+
+func get_lifetime():
+	var lifetime = base_lifetime
+	for i in range(6):
+		if organs[i]:
+			lifetime += lifetimes[i]
+	return lifetime
+
+func _process(delta):
+	if not alive:
+		return
+	alive_since += delta * globals.death_speed
+	if alive_since > self.get_lifetime():
+		alive = false
+		for i in range(6):
+			organs[i] = false
+		self.apply_organs()
+	$LifeBar.value = self.get_lifetime() - alive_since
 
 func apply_organs():
 	$brain.present = organs[globals.ORGANS.BRAIN]

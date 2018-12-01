@@ -167,11 +167,9 @@ blend_times = [  ]
 
 visible = false
 position = Vector2( 320, 180 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="HUD" parent="." index="1" instance=ExtResource( 10 )]
-
-waitingSpeedAcc = 0.0005
 
 [connection signal="buy_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_buy_organ"]
 

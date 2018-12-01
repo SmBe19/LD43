@@ -27,9 +27,18 @@ func connect_belt_dudes(instance, functiontake, functiondrop):
 		if not dude.is_connected("drop_organ_to_dude", instance, functiondrop):
 			dude.connect("drop_organ_to_dude", instance, functiondrop)
 
+func add_belt():
+	var new_child = belt.instance()
+	new_child.hide_dude()
+	self.add_child(new_child)
+	new_child.start_moving()
+	self.distribute_belts()
+
 func _ready():
+	self.get_child(0).hide_dude()
+	self.get_child(0).start_moving()
 	for i in range(start_belt-1):
-		self.add_child(belt.instance())
+		self.add_belt()
 	self.distribute_belts()
 
 #func _process(delta):

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scn/BlackMarket.gd" type="Script" id=1]
 [ext_resource path="res://img/table.png" type="Texture" id=2]
 [ext_resource path="res://scn/Organ.tscn" type="PackedScene" id=3]
+[ext_resource path="res://img/label.png" type="Texture" id=4]
+[ext_resource path="res://scn/PriceFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://img/belt.png" type="Texture" id=6]
 
 [node name="BlackMarket" type="Node2D"]
 
@@ -19,7 +22,7 @@ price = 50
 
 [node name="heart" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( -48.8535, -12.9413 )
+position = Vector2( -53.0698, -22.1645 )
 organ_type = 1
 price = 130
 
@@ -31,21 +34,91 @@ price = 60
 
 [node name="liver" parent="." index="4" instance=ExtResource( 3 )]
 
-position = Vector2( 6.22078, 7.2235 )
+position = Vector2( 4.63966, -11.2229 )
 organ_type = 3
 price = 170
 
 [node name="lkidney" parent="." index="5" instance=ExtResource( 3 )]
 
-position = Vector2( -35.9986, 67.013 )
+position = Vector2( -46.2759, 73.074 )
 organ_type = 4
 price = 200
 
 [node name="rkidney" parent="." index="6" instance=ExtResource( 3 )]
 
-position = Vector2( -56.6987, 35.6463 )
+position = Vector2( -61.7056, 41.1802 )
 organ_type = 5
 price = 200
+
+[node name="beltWrapper" type="Control" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -68.0
+margin_top = -3.0
+margin_right = -28.0
+margin_bottom = 37.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="label" type="Sprite" parent="beltWrapper" index="0"]
+
+position = Vector2( 81.6526, 12.4447 )
+texture = ExtResource( 4 )
+
+[node name="beltPrice" type="Label" parent="beltWrapper" index="1"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 42.0
+margin_top = 5.0
+margin_right = 147.0
+margin_bottom = 34.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 5 )
+text = "$ 1M"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[node name="belt" type="TextureButton" parent="beltWrapper" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 80.0
+margin_bottom = 80.0
+rect_scale = Vector2( 0.25, 0.25 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 6 )
+_sections_unfolded = [ "Rect", "Textures" ]
 
 [connection signal="take_organ" from="brain" to="." method="take_organ"]
 
@@ -58,5 +131,7 @@ price = 200
 [connection signal="take_organ" from="lkidney" to="." method="take_organ"]
 
 [connection signal="take_organ" from="rkidney" to="." method="take_organ"]
+
+[connection signal="pressed" from="beltWrapper/belt" to="." method="_on_belt_pressed"]
 
 
