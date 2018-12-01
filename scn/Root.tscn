@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scn/Root.gd" type="Script" id=1]
+[ext_resource path="res://scn/Belt.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=3]
+
+[node name="Root" type="Node"]
+
+script = ExtResource( 1 )
+start_belt = 2
+max_belt = 6
+
+[node name="Belts" type="Node2D" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Belt" parent="Belts" index="0" instance=ExtResource( 2 )]
+
+[node name="HUD" parent="." index="1" instance=ExtResource( 3 )]
+
+
