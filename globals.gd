@@ -1,0 +1,3 @@
+extends Node
+
+enum ORGANS {BRAIN, HEART, LUNGS, LIVER, LKIDNEY, RKIDNEY}

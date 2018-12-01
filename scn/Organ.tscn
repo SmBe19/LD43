@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scn/Organ.gd" type="Script" id=1]
+[ext_resource path="res://img/liver.png" type="Texture" id=2]
+[ext_resource path="res://scn/ButtonTakeOrgan.gd" type="Script" id=3]
+
+[node name="Organ" type="Node2D"]
+
+script = ExtResource( 1 )
+texture = null
+click_mask = null
+mirror = null
+organ_type = null
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+[node name="ButtonTakeOrgan" type="TextureButton" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+script = ExtResource( 3 )
+_sections_unfolded = [ "Rect" ]
+
+
