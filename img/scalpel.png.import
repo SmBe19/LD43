@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pipe_turn.png-5c8db5f4aa21a16b7f919af03b2b166e.stex"
+path="res://.import/scalpel.png-50594d402d8e21a591d29b1b9214ad9d.stex"
 
 [deps]
 
-source_file="res://img/pipe_turn.png"
-dest_files=[ "res://.import/pipe_turn.png-5c8db5f4aa21a16b7f919af03b2b166e.stex" ]
+source_file="res://img/scalpel.png"
+dest_files=[ "res://.import/scalpel.png-50594d402d8e21a591d29b1b9214ad9d.stex" ]
 
 [params]
 

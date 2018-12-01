@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scn/Root.gd" type="Script" id=1]
 [ext_resource path="res://scn/GameRoot.gd" type="Script" id=2]
 [ext_resource path="res://scn/Belts.gd" type="Script" id=3]
 [ext_resource path="res://scn/Belt.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scn/ActiveOrgan.gd" type="Script" id=5]
-[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scn/Surgery.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 
@@ -55,6 +56,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Belts" type="Node2D" parent="GameRoot" index="0"]
 
+editor/display_folded = true
 script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 start_belt = 2
@@ -64,6 +66,7 @@ max_belt = 6
 
 [node name="ActiveOrgan" type="Node2D" parent="GameRoot" index="1"]
 
+editor/display_folded = true
 script = ExtResource( 5 )
 _sections_unfolded = [ "Visibility" ]
 
@@ -81,6 +84,11 @@ playback_speed = 1.0
 anims/Fall = SubResource( 1 )
 blend_times = [  ]
 
-[node name="HUD" parent="." index="1" instance=ExtResource( 6 )]
+[node name="Surgery" parent="GameRoot" index="2" instance=ExtResource( 6 )]
+
+position = Vector2( 320, 180 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="HUD" parent="." index="1" instance=ExtResource( 7 )]
 
 
