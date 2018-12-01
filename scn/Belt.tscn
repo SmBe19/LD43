@@ -71,7 +71,7 @@ tracks/3/keys = {
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-moving_speed = 128
+moving_speed = 182
 
 [node name="belt_bg" type="Sprite" parent="." index="0"]
 

@@ -21,10 +21,6 @@ func start_surgery(entries, colors):
 	self.randomize_field(entries, colors)
 	emit_signal("start_puzzle")
 	$ShowHideAnimation.play("Show")
-	
-	# TODO remove
-	#visible = false
-	#emit_signal("finished_puzzle")
 
 func finish_surgery(result):
 	globals.organ_drag_drop_enabled = true
@@ -37,11 +33,6 @@ func hiding_finished():
 func _ready():
 	self.generate_field()
 	self.randomize_field(1, 1)
-
-func _process(delta):
-	# TODO remove
-	if Input.is_key_pressed(KEY_SPACE):
-		self.randomize_field(5, 3)
 
 func is_border(x, y):
 	return x == 0 or x == width - 1 or y == 0 or y == height - 1
@@ -163,6 +154,58 @@ func randomize_field(entries, colors):
 					field[y][x] = 0
 			rects[y][x].value = field[y][x]
 
+func color_path(start_x, start_y, fld, col, ignore_coldiff=false):
+	var x = start_x
+	var y = start_y
+	fld[y][x] = 1
+	if ignore_coldiff:
+		rects[y][x].modulate = col
+	while true:
+		var dir
+		if field[y][x] == -1:
+			return true
+		var nx
+		var ny
+		var dirss = [
+			[[-1, 0], [1, 0]],
+			[[0, -1], [0, 1]],
+			[[1, 0], [0, 1]],
+			[[0, 1], [-1, 0]],
+			[[-1, 0], [0, -1]],
+			[[0, -1], [1, 0]],
+		]
+		var dirs = dirss[field[y][x]]
+		var found_dir = false
+		for dir in dirs:
+			nx = x + dir[0]
+			ny = y + dir[1]
+			if is_valid(nx, ny) and fld[ny][nx] == 0 and field[ny][nx] != -1:
+				var odirs = dirss[field[ny][nx]]
+				var pos = false
+				for odir in odirs:
+					var nnx = nx + odir[0]
+					var nny = ny + odir[1]
+					if nnx == x and nny == y:
+						pos = true
+				if not pos:
+					continue
+				x = nx
+				y = ny
+				fld[y][x] = 1
+				if not ignore_coldiff and is_border(x, y):
+					if rects[y][x].modulate != col:
+						for y in range(height):
+							for x in range(width):
+								fld[y][x] = 0
+						color_path(start_x, start_y, fld, Color(0.3, 0.7, 0.2, 1), true)
+						return false
+				rects[y][x].modulate = col
+				found_dir = true
+				break
+		if not found_dir:
+			break
+	return true
+
 func check_field():
 	var fld = []
 	var bord = []
@@ -182,48 +225,9 @@ func check_field():
 		if fld[y][x] == 1:
 			continue
 		starts += 1
-		fld[y][x] = 1
 		var col = rects[y][x].modulate
-		while true:
-			var dir
-			if field[y][x] == -1:
-				break
-			var nx
-			var ny
-			var dirss = [
-				[[-1, 0], [1, 0]],
-				[[0, -1], [0, 1]],
-				[[1, 0], [0, 1]],
-				[[0, 1], [-1, 0]],
-				[[-1, 0], [0, -1]],
-				[[0, -1], [1, 0]],
-			]
-			var dirs = dirss[field[y][x]]
-			var found_dir = false
-			for dir in dirs:
-				nx = x + dir[0]
-				ny = y + dir[1]
-				if is_valid(nx, ny) and fld[ny][nx] == 0 and field[ny][nx] != -1:
-					var odirs = dirss[field[ny][nx]]
-					var pos = false
-					for odir in odirs:
-						var nnx = nx + odir[0]
-						var nny = ny + odir[1]
-						if nnx == x and nny == y:
-							pos = true
-					if not pos:
-						continue
-					x = nx
-					y = ny
-					fld[y][x] = 1
-					if is_border(x, y):
-						if rects[y][x].modulate != col:
-							finish_surgery("failed_puzzle")
-							return
-					rects[y][x].modulate = col
-					found_dir = true
-					break
-			if not found_dir:
-				break
+		if not self.color_path(x, y, fld, col, false):
+			finish_surgery("failed_puzzle")
+			return
 	if starts == len(bord)/2:
 		finish_surgery("finished_puzzle")

@@ -1,6 +1,6 @@
 extends Node2D
 
-export(float) var moving_speed = 128
+export(float) var moving_speed = 182
 
 var moving = false
 var offset = 0

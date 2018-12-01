@@ -138,6 +138,8 @@ max_belt = 6
 
 [node name="Belt" parent="GameRoot/Belts" index="0" instance=ExtResource( 6 )]
 
+moving_speed = 182
+
 [node name="BlackMarket" parent="GameRoot" index="2" instance=ExtResource( 7 )]
 
 position = Vector2( 550, 270 )

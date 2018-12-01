@@ -63,6 +63,46 @@ func get_mouse_side():
 		else:
 			return 1
 
+func get_type(side1, side2):
+	if side1 == side2:
+		return -1
+	if side2 < side1:
+		var tmp = side1
+		side1 = side2
+		side2 = tmp
+	match side1:
+		0:
+			match side2:
+				1:
+					return 5
+				2:
+					return 0
+				3:
+					return 2
+		1:
+			match side2:
+				2:
+					return 4
+				3:
+					return 1
+		2:
+			match side2:
+				3:
+					return 3
+
+func _process(delta):
+	if can_change && in_side != -1:
+		var out_side = get_mouse_side()
+		var type = get_type(in_side, out_side)
+		self_modulate = Color(1, 1, 1, 0.2)
+		self.value = type
+		if not Input.is_mouse_button_pressed(BUTTON_LEFT):
+			self.value = $"../..".field[y][x]
+			if type != -1:
+				emit_signal("value_drop", x, y, type)
+			self_modulate = Color(1, 1, 1)
+			in_side = -1
+
 func _on_SurgeryRect_mouse_entered():
 	if can_change:
 		if Input.is_mouse_button_pressed(BUTTON_LEFT) and in_side == -1:
@@ -72,30 +112,8 @@ func _on_SurgeryRect_mouse_exited():
 	if can_change:
 		if Input.is_mouse_button_pressed(BUTTON_LEFT) and in_side != -1:
 			var out_side = get_mouse_side()
-			if in_side != out_side:
-				if out_side < in_side:
-					var tmp = out_side
-					out_side = in_side
-					in_side = tmp
-				var type = -1
-				match in_side:
-					0:
-						match out_side:
-							1:
-								type = 5
-							2:
-								type = 0
-							3:
-								type = 2
-					1:
-						match out_side:
-							2:
-								type = 4
-							3:
-								type = 1
-					2:
-						match out_side:
-							3:
-								type = 3
+			var type = get_type(in_side, out_side)
+			if type != -1:
 				emit_signal("value_drop", x, y, type)
+	self_modulate = Color(1, 1, 1)
 	in_side = -1
