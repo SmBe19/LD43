@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scn/Root.gd" type="Script" id=1]
 [ext_resource path="res://scn/GameRoot.gd" type="Script" id=2]
 [ext_resource path="res://scn/Belts.gd" type="Script" id=3]
 [ext_resource path="res://scn/Belt.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scn/ActiveOrgan.gd" type="Script" id=5]
-[ext_resource path="res://scn/Surgery.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scn/BlackMarket.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scn/ActiveOrgan.gd" type="Script" id=6]
+[ext_resource path="res://scn/Surgery.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 
@@ -56,7 +57,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Belts" type="Node2D" parent="GameRoot" index="0"]
 
-editor/display_folded = true
 script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 start_belt = 2
@@ -64,10 +64,15 @@ max_belt = 6
 
 [node name="Belt" parent="GameRoot/Belts" index="0" instance=ExtResource( 4 )]
 
-[node name="ActiveOrgan" type="Node2D" parent="GameRoot" index="1"]
+[node name="BlackMarket" parent="GameRoot" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( 550, 270 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ActiveOrgan" type="Node2D" parent="GameRoot" index="2"]
 
 editor/display_folded = true
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="GameRoot/ActiveOrgan" index="0"]
@@ -84,15 +89,21 @@ playback_speed = 1.0
 anims/Fall = SubResource( 1 )
 blend_times = [  ]
 
-[node name="Surgery" parent="GameRoot" index="2" instance=ExtResource( 6 )]
+[node name="Surgery" parent="GameRoot" index="3" instance=ExtResource( 7 )]
 
 position = Vector2( 320, 180 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="HUD" parent="." index="1" instance=ExtResource( 7 )]
+[node name="HUD" parent="." index="1" instance=ExtResource( 8 )]
+
+[connection signal="buy_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_buy_organ"]
+
+[connection signal="sell_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_sell_organ"]
 
 [connection signal="failed_puzzle" from="GameRoot/Surgery" to="GameRoot/ActiveOrgan" method="_on_Surgery_failed_puzzle"]
 
 [connection signal="finished_puzzle" from="GameRoot/Surgery" to="GameRoot/ActiveOrgan" method="_on_Surgery_finished_puzzle"]
+
+[connection signal="start_puzzle" from="GameRoot/Surgery" to="GameRoot/BlackMarket" method="_on_Surgery_start_puzzle"]
 
 

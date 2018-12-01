@@ -1,16 +1,56 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scn/Organ.gd" type="Script" id=1]
-[ext_resource path="res://img/liver.png" type="Texture" id=2]
+[ext_resource path="res://img/label.png" type="Texture" id=2]
+[ext_resource path="res://img/liver.png" type="Texture" id=3]
+[ext_resource path="res://fnt/dejavu/DejaVuSans.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 24
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [node name="Organ" type="Node2D"]
 
 script = ExtResource( 1 )
-texture = null
 organ_type = null
+price = 0
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="PriceBG" type="Sprite" parent="." index="0"]
 
+position = Vector2( 69.3199, -3.30096 )
 texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+
+[node name="PriceLabel" type="Label" parent="." index="2"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 31.0
+margin_top = -11.0
+margin_right = 129.0
+margin_bottom = 18.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "$ 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "Visibility", "custom_fonts" ]
 
 

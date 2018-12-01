@@ -9,3 +9,13 @@ func on_drop_organ(dude, organ):
 
 func _ready():
 	$Surgery.visible = false
+
+func _on_BlackMarket_buy_organ(organ):
+	$ActiveOrgan.set(null, organ)
+
+func _on_BlackMarket_sell_organ():
+	if $ActiveOrgan.organ != -1:
+		$BlackMarket.sell_organ($ActiveOrgan.organ)
+		$ActiveOrgan.dude = null
+		$ActiveOrgan.receiver = null
+		$ActiveOrgan.drop()

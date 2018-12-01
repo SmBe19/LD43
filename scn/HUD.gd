@@ -2,7 +2,7 @@ extends Node
 
 signal waiting_room_full
 
-export(float) var waitingSpeed = 0.1
+export(float) var waitingSpeed = 0.05
 var waiting = 0
 var score = 0
 var survived = 0
@@ -37,7 +37,7 @@ func update_score_label():
 	$Score.text = str(score)
 
 func update_money_label():
-	$Money.text = "$ " + str(money)
+	$Money.text = "$ " + str(money) + "k"
 
 func _ready():
 	pass

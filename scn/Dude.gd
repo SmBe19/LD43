@@ -24,9 +24,9 @@ func randomize_organs():
 	organs[globals.ORGANS.BRAIN] = rand_bool(0.8)
 	organs[globals.ORGANS.HEART] = rand_bool(0.8)
 	organs[globals.ORGANS.LUNGS] = rand_bool(0.5)
-	organs[globals.ORGANS.LIVER] = rand_bool(0.5)
-	organs[globals.ORGANS.LKIDNEY] = rand_bool(0.5)
-	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.5)
+	organs[globals.ORGANS.LIVER] = rand_bool(0.4)
+	organs[globals.ORGANS.LKIDNEY] = rand_bool(0.2)
+	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.2)
 	for k in organs:
 		orig_organs[k] = organs[k]
 	self.apply_organs()

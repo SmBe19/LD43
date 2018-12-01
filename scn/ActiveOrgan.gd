@@ -3,7 +3,7 @@ extends Node2D
 var active = false
 var dude = null
 var receiver = null
-var organ = globals.ORGANS.BRAIN
+var organ = -1
 var textures = {
 	globals.ORGANS.BRAIN: preload("res://img/brain.png"),
 	globals.ORGANS.HEART: preload("res://img/heart.png"),
@@ -27,15 +27,14 @@ func set(dude, organ):
 func reset():
 	active = false
 	dude = null
-	organ = 0
+	organ = -1
 	receiver = null
 	$Sprite.texture = null
 	$FallAnimation.stop(true)
 
 func maybe_receiver():
 	if receiver != null:
-		receiver.receive_organ(organ)
-		reset()
+		$"../Surgery".start_surgery(entries[organ], 2)
 
 func on_finished_falling():
 	if receiver != null:
@@ -46,7 +45,8 @@ func on_finished_falling():
 
 func drop():
 	active = false
-	$"../Surgery".start_surgery(entries[organ], 2)
+	if not $FallAnimation.is_playing():
+		$FallAnimation.play("Fall")
 
 func _process(delta):
 	if active:
@@ -58,5 +58,5 @@ func _on_Surgery_failed_puzzle():
 	self.reset()
 
 func _on_Surgery_finished_puzzle():
-	if not $FallAnimation.is_playing():
-		$FallAnimation.play("Fall")
+	receiver.receive_organ(organ)
+	reset()

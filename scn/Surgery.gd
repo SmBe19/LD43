@@ -2,6 +2,7 @@ extends Node2D
 
 signal finished_puzzle
 signal failed_puzzle
+signal start_puzzle
 
 const width = 8
 const height = 6
@@ -17,6 +18,7 @@ const pipe_colors = [
 func start_surgery(entries, colors):
 	visible = true
 	self.randomize_field(entries, colors)
+	emit_signal("start_puzzle")
 	
 	# TODO remove
 	visible = false

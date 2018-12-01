@@ -1,16 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scn/Dude.gd" type="Script" id=1]
 [ext_resource path="res://img/person.png" type="Texture" id=2]
 [ext_resource path="res://scn/Organ.tscn" type="PackedScene" id=3]
-[ext_resource path="res://img/brain.png" type="Texture" id=4]
-[ext_resource path="res://img/liver.png" type="Texture" id=5]
-[ext_resource path="res://img/heart.png" type="Texture" id=6]
-[ext_resource path="res://img/lungs.png" type="Texture" id=7]
-[ext_resource path="res://img/lkidney.png" type="Texture" id=8]
-[ext_resource path="res://img/rkidney.png" type="Texture" id=9]
 
-[node name="Dude" type="Node2D"]
+[node name="Dude" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -20,41 +14,35 @@ texture = ExtResource( 2 )
 
 [node name="brain" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( -4.40128, -91.9865 )
+position = Vector2( 1.74588, -99.1043 )
 _sections_unfolded = [ "Transform" ]
-texture = ExtResource( 4 )
 organ_type = 0
 
 [node name="liver" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( -3.11974, -17.6408 )
-texture = ExtResource( 5 )
+position = Vector2( -3.11974, -29.6408 )
 organ_type = 3
 
 [node name="heart" parent="." index="3" instance=ExtResource( 3 )]
 
-position = Vector2( 2.96115, -26.3656 )
-texture = ExtResource( 6 )
+position = Vector2( 3.96115, -37.3656 )
 organ_type = 1
 
 [node name="lungs" parent="." index="4" instance=ExtResource( 3 )]
 
-position = Vector2( -0.200623, -38.4108 )
-texture = ExtResource( 7 )
+position = Vector2( 1.74057, -50.058 )
 organ_type = 2
 
 [node name="lkidney" parent="." index="5" instance=ExtResource( 3 )]
 
-position = Vector2( -13.0933, 10.5598 )
+position = Vector2( -5.97554, -18.8817 )
 _sections_unfolded = [ "Transform" ]
-texture = ExtResource( 8 )
 organ_type = 4
 
 [node name="rkidney" parent="." index="6" instance=ExtResource( 3 )]
 
-position = Vector2( 7.90613, 9.97865 )
+position = Vector2( 8.87674, -19.7864 )
 _sections_unfolded = [ "Transform" ]
-texture = ExtResource( 9 )
 organ_type = 5
 
 [connection signal="drop_organ" from="brain" to="." method="on_drop_organ"]
