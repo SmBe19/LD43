@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scn/SurgeryRect.gd" type="Script" id=1]
 
-[node name="SurgeryRect" type="TextureRect"]
+[node name="SurgeryRect" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -18,8 +18,29 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-stretch_mode = 0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Anchor", "Margin", "Mouse" ]
+
+[node name="SurgeryPipe" type="TextureRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 48.0
+margin_bottom = 48.0
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 24, 24 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+stretch_mode = 0
+_sections_unfolded = [ "Mouse", "Rect" ]
+
+[connection signal="mouse_entered" from="." to="." method="_on_SurgeryRect_mouse_entered"]
+
+[connection signal="mouse_exited" from="." to="." method="_on_SurgeryRect_mouse_exited"]
 
 

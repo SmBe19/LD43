@@ -63,6 +63,10 @@ func to_nice_local(position):
 	return position + Vector2(width/2, height/2)
 
 func _input(event):
+	if Engine.editor_hint:
+		return
+	if get_node("/root/globals") and not get_node("/root/globals").organ_drag_drop_enabled:
+		return
 	if event is InputEventMouseButton:
 		if self.can_buy():
 			var local_pos = get_local_mouse_position()

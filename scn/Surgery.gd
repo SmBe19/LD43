@@ -16,13 +16,19 @@ const pipe_colors = [
 ]
 
 func start_surgery(entries, colors):
+	globals.organ_drag_drop_enabled = false
 	visible = true
 	self.randomize_field(entries, colors)
 	emit_signal("start_puzzle")
 	
 	# TODO remove
+	#visible = false
+	#emit_signal("finished_puzzle")
+
+func finish_surgery(result):
+	globals.organ_drag_drop_enabled = false
 	visible = false
-	emit_signal("finished_puzzle")
+	emit_signal(result)
 
 func _ready():
 	self.generate_field()
@@ -40,10 +46,11 @@ func is_valid(x, y):
 	return x >= 0 and x < width and y >= 0 and y < height
 
 func generate_field():
+	var source_order = [1, 0, 4, 5, 2, 3]
 	for i in range(6):
 		var new_child = preload("res://scn/SurgerySource.tscn").instance()
 		new_child.value = i
-		new_child.rect_position = Vector2(0, i * 48)
+		new_child.rect_position = Vector2(0, source_order[i] * 48)
 		$Source.add_child(new_child)
 	rects = []
 	for y in range(height):
@@ -196,8 +203,7 @@ func check_field():
 					fld[y][x] = 1
 					if is_border(x, y):
 						if rects[y][x].modulate != col:
-							visible = false
-							emit_signal("failed_puzzle")
+							finish_surgery("failed_puzzle")
 							return
 					rects[y][x].modulate = col
 					found_dir = true
@@ -205,5 +211,4 @@ func check_field():
 			if not found_dir:
 				break
 	if starts == len(bord)/2:
-		visible = false
-		emit_signal("finished_puzzle")
+		finish_surgery("finished_puzzle")

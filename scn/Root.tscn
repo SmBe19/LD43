@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scn/Root.gd" type="Script" id=1]
 [ext_resource path="res://scn/GameRoot.gd" type="Script" id=2]
-[ext_resource path="res://scn/Belts.gd" type="Script" id=3]
-[ext_resource path="res://scn/Belt.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scn/BlackMarket.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scn/ActiveOrgan.gd" type="Script" id=6]
-[ext_resource path="res://scn/Surgery.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=8]
+[ext_resource path="res://img/tiles.png" type="Texture" id=3]
+[ext_resource path="res://img/blood1.png" type="Texture" id=4]
+[ext_resource path="res://scn/Belts.gd" type="Script" id=5]
+[ext_resource path="res://scn/Belt.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scn/BlackMarket.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scn/ActiveOrgan.gd" type="Script" id=8]
+[ext_resource path="res://scn/Surgery.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 
@@ -55,24 +57,96 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Belts" type="Node2D" parent="GameRoot" index="0"]
+[node name="Background" type="Node2D" parent="GameRoot" index="0"]
 
-script = ExtResource( 3 )
+editor/display_folded = true
+
+[node name="TextureRect" type="TextureRect" parent="GameRoot/Background" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -4.0
+margin_top = -8.0
+margin_right = 582.0
+margin_bottom = 298.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+_sections_unfolded = [ "Rect" ]
+
+[node name="blood1" type="Sprite" parent="GameRoot/Background" index="1"]
+
+position = Vector2( 104.037, 75.8711 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood2" type="Sprite" parent="GameRoot/Background" index="2"]
+
+position = Vector2( 248.385, 139.717 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood3" type="Sprite" parent="GameRoot/Background" index="3"]
+
+position = Vector2( 497.293, 94.3772 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood4" type="Sprite" parent="GameRoot/Background" index="4"]
+
+position = Vector2( 150.302, 243.352 )
+rotation = -1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood5" type="Sprite" parent="GameRoot/Background" index="5"]
+
+position = Vector2( 438.073, 233.174 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood6" type="Sprite" parent="GameRoot/Background" index="6"]
+
+position = Vector2( 583.347, 155.448 )
+rotation = 3.14159
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood7" type="Sprite" parent="GameRoot/Background" index="7"]
+
+position = Vector2( 284.472, 284.991 )
+rotation = 3.14159
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Belts" type="Node2D" parent="GameRoot" index="1"]
+
+script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 start_belt = 2
 max_belt = 6
 
-[node name="Belt" parent="GameRoot/Belts" index="0" instance=ExtResource( 4 )]
+[node name="Belt" parent="GameRoot/Belts" index="0" instance=ExtResource( 6 )]
 
-[node name="BlackMarket" parent="GameRoot" index="1" instance=ExtResource( 5 )]
+[node name="BlackMarket" parent="GameRoot" index="2" instance=ExtResource( 7 )]
 
 position = Vector2( 550, 270 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ActiveOrgan" type="Node2D" parent="GameRoot" index="2"]
+[node name="ActiveOrgan" type="Node2D" parent="GameRoot" index="3"]
 
 editor/display_folded = true
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="GameRoot/ActiveOrgan" index="0"]
@@ -89,12 +163,13 @@ playback_speed = 1.0
 anims/Fall = SubResource( 1 )
 blend_times = [  ]
 
-[node name="Surgery" parent="GameRoot" index="3" instance=ExtResource( 7 )]
+[node name="Surgery" parent="GameRoot" index="4" instance=ExtResource( 9 )]
 
+visible = false
 position = Vector2( 320, 180 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="HUD" parent="." index="1" instance=ExtResource( 8 )]
+[node name="HUD" parent="." index="1" instance=ExtResource( 10 )]
 
 [connection signal="buy_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_buy_organ"]
 

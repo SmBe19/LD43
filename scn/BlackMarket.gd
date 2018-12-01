@@ -29,6 +29,8 @@ func is_inside(position):
 	return false
 
 func _input(event):
+	if not globals.organ_drag_drop_enabled:
+		return
 	if event is InputEventMouseButton:
 		var local_pos = get_local_mouse_position()
 		if self.is_inside(local_pos):

@@ -4,7 +4,7 @@
 [ext_resource path="res://img/table.png" type="Texture" id=2]
 [ext_resource path="res://scn/Organ.tscn" type="PackedScene" id=3]
 
-[node name="BlackMarket" type="Node2D"]
+[node name="BlackMarket" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -15,7 +15,6 @@ texture = ExtResource( 2 )
 [node name="brain" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( -36.2357, -67.9421 )
-organ_type = 0
 price = 50
 
 [node name="heart" parent="." index="2" instance=ExtResource( 3 )]

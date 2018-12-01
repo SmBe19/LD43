@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scn/Organ.gd" type="Script" id=1]
 [ext_resource path="res://img/label.png" type="Texture" id=2]
-[ext_resource path="res://img/liver.png" type="Texture" id=3]
+[ext_resource path="res://img/brain.png" type="Texture" id=3]
 [ext_resource path="res://fnt/dejavu/DejaVuSans.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
@@ -16,11 +16,12 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 [node name="Organ" type="Node2D"]
 
 script = ExtResource( 1 )
-organ_type = null
+organ_type = 0
 price = 0
 
 [node name="PriceBG" type="Sprite" parent="." index="0"]
 
+visible = false
 position = Vector2( 69.3199, -3.30096 )
 texture = ExtResource( 2 )
 
@@ -30,6 +31,7 @@ texture = ExtResource( 3 )
 
 [node name="PriceLabel" type="Label" parent="." index="2"]
 
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -47,7 +49,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
-text = "$ 0"
+text = "$ 0k"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

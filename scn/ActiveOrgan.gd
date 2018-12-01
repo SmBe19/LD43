@@ -33,7 +33,8 @@ func reset():
 	$FallAnimation.stop(true)
 
 func maybe_receiver():
-	if receiver != null:
+	if receiver != null and receiver != dude:
+		$FallAnimation.stop()
 		$"../Surgery".start_surgery(entries[organ], 2)
 
 func on_finished_falling():
@@ -58,5 +59,6 @@ func _on_Surgery_failed_puzzle():
 	self.reset()
 
 func _on_Surgery_finished_puzzle():
-	receiver.receive_organ(organ)
+	if receiver != null:
+		receiver.receive_organ(organ)
 	reset()

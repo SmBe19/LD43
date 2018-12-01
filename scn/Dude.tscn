@@ -4,7 +4,7 @@
 [ext_resource path="res://img/person.png" type="Texture" id=2]
 [ext_resource path="res://scn/Organ.tscn" type="PackedScene" id=3]
 
-[node name="Dude" type="Node2D" index="0"]
+[node name="Dude" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -16,7 +16,6 @@ texture = ExtResource( 2 )
 
 position = Vector2( 1.74588, -99.1043 )
 _sections_unfolded = [ "Transform" ]
-organ_type = 0
 
 [node name="liver" parent="." index="2" instance=ExtResource( 3 )]
 
