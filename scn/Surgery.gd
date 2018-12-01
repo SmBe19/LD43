@@ -142,8 +142,10 @@ func randomize_field(entries, colors):
 			row.append(-1)
 			rects[y][x].modulate = Color(1, 1, 1)
 		field.append(row)
+	var colidx = 0
 	for i in range(entries):
-		add_random_walk(pipe_colors[randi()%colors])
+		add_random_walk(pipe_colors[colidx])
+		colidx = (colidx+1)%colors
 	for y in range(height):
 		for x in range(width):
 			if not is_border(x, y):

@@ -7,8 +7,8 @@ var organs = {}
 var orig_organs = {}
 var alive = false
 var alive_since = 0
-const base_lifetime = 60
-const lifetimes = [40, 40, 30, 10, 10, 10]
+const base_lifetime = 40
+const lifetimes = [40, 30, 30, 10, 10, 10]
 var max_lifetime = 100
 
 func _ready():
@@ -52,7 +52,7 @@ func receive_organ(organ):
 func get_score():
 	if not alive:
 		return -17
-	var score = 0
+	var score = 3
 	for i in range(6):
 		if not organs[i]:
 			if not((i == 4 or i == 5) and (organs[4] or organs[5])):
