@@ -12,6 +12,7 @@ var textures = {
 	globals.ORGANS.LKIDNEY: preload("res://img/lkidney.png"),
 	globals.ORGANS.RKIDNEY: preload("res://img/rkidney.png"),
 }
+const entries = [6, 4, 4, 2, 2, 2]
 
 func set(dude, organ):
 	reset()
@@ -44,12 +45,18 @@ func on_finished_falling():
 	reset()
 
 func drop():
-	if not $FallAnimation.is_playing():
-		$FallAnimation.play("Fall")
+	active = false
+	$"../Surgery".start_surgery(entries[organ], 2)
 
 func _process(delta):
 	if active:
 		if not Input.is_mouse_button_pressed(BUTTON_LEFT):
 			drop()
-		if not $FallAnimation.is_playing():
-			$Sprite.position = get_viewport().get_mouse_position() * 0.5
+		$Sprite.position = get_viewport().get_mouse_position() * 0.5
+
+func _on_Surgery_failed_puzzle():
+	self.reset()
+
+func _on_Surgery_finished_puzzle():
+	if not $FallAnimation.is_playing():
+		$FallAnimation.play("Fall")

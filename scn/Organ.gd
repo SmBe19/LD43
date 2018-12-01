@@ -4,7 +4,7 @@ extends Node2D
 signal take_organ(organ)
 signal drop_organ(organ)
 
-enum ORGANS {BRAIN, HEART, LUNGS, LIVER, LKIDNEY, RKIDNEY}
+enum ORGANS {BRAIN=0, HEART=1, LUNGS=2, LIVER=3, LKIDNEY=4, RKIDNEY=5}
 
 export(Texture) var texture
 export(ORGANS) var organ_type
@@ -18,7 +18,7 @@ func get_modulate(active):
 	if active:
 		return Color(1, 1, 1, 1)
 	else:
-		return Color(0.2, 0.2, 0.2, 1)
+		return Color(0.2, 0.2, 0.2, 0.2)
 
 func present_set(val):
 	present = val

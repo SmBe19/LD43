@@ -2,7 +2,7 @@ extends Node
 
 signal waiting_room_full
 
-export(float) var waitingSpeed = 0.5
+export(float) var waitingSpeed = 0.1
 var waiting = 0
 var score = 0
 var survived = 0

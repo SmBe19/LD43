@@ -8,4 +8,4 @@ func on_drop_organ(dude, organ):
 		$ActiveOrgan.receiver = dude
 
 func _ready():
-	pass
+	$Surgery.visible = false

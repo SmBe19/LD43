@@ -14,11 +14,20 @@ const pipe_colors = [
 	Color(0, 1, 0),
 ]
 
+func start_surgery(entries, colors):
+	visible = true
+	self.randomize_field(entries, colors)
+	
+	# TODO remove
+	visible = false
+	emit_signal("finished_puzzle")
+
 func _ready():
 	self.generate_field()
 	self.randomize_field(1, 1)
 
 func _process(delta):
+	# TODO remove
 	if Input.is_key_pressed(KEY_SPACE):
 		self.randomize_field(5, 3)
 
@@ -158,6 +167,7 @@ func check_field():
 		var y = brd[1]
 		if fld[y][x] == 1:
 			continue
+		starts += 1
 		fld[y][x] = 1
 		var col = rects[y][x].modulate
 		while true:
@@ -184,6 +194,7 @@ func check_field():
 					fld[y][x] = 1
 					if is_border(x, y):
 						if rects[y][x].modulate != col:
+							visible = false
 							emit_signal("failed_puzzle")
 							return
 					rects[y][x].modulate = col
@@ -192,4 +203,5 @@ func check_field():
 			if not found_dir:
 				break
 	if starts == len(bord)/2:
+		visible = false
 		emit_signal("finished_puzzle")

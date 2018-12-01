@@ -12,6 +12,11 @@ var rkidney = true
 var organs = {}
 var orig_organs = {}
 
+func debug(txt):
+	print(txt)
+	print("organs: ", organs)
+	print("orig: ", orig_organs)
+
 func rand_bool(prob):
 	return randf() < prob
 
@@ -27,20 +32,26 @@ func randomize_organs():
 	self.apply_organs()
 
 func copy_organs(dude):
-	organs = dude.organs
+	for k in organs:
+		organs[k] = dude.organs[k]
+	for k in organs:
+		orig_organs[k] = organs[k]
 	self.apply_organs()
 
 func receive_organ(organ):
 	if not organs[organ]:
 		organs[organ] = true
 		self.apply_organs()
+	debug("receive_organ")
 
 func get_score():
+	debug("score")
 	var score = 0
 	for i in range(6):
 		if not organs[i]:
-			print("missing ", i)
-			return -7
+			if not((i == 4 or i == 5) and (organs[4] or organs[5])):
+				print("missing ", i)
+				return -7
 		if organs[i] and not orig_organs[i]:
 			score += 2
 	return score
@@ -60,6 +71,7 @@ func on_take_organ(organ):
 		organs[organ] = false
 		self.apply_organs()
 		emit_signal("take_organ_from_dude", self, organ)
+	debug("on_take_organ")
 
 func on_drop_organ(organ):
 	if $"..".moving:

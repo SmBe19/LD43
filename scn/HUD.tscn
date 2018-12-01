@@ -60,10 +60,10 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[node name="HUD" type="Node"]
+[node name="HUD" type="Node" index="0"]
 
 script = ExtResource( 1 )
-waitingSpeed = 0.5
+waitingSpeed = 0.1
 
 [node name="Money" type="Label" parent="." index="0"]
 
@@ -126,10 +126,10 @@ size_flags_vertical = 0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 min_value = 0.0
-max_value = 100.0
+max_value = 11.0
 step = 1.0
 page = 0.0
-value = 42.0
+value = 11.0
 exp_edit = false
 rounded = false
 percent_visible = false

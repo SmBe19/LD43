@@ -91,4 +91,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="HUD" parent="." index="1" instance=ExtResource( 7 )]
 
+[connection signal="failed_puzzle" from="GameRoot/Surgery" to="GameRoot/ActiveOrgan" method="_on_Surgery_failed_puzzle"]
+
+[connection signal="finished_puzzle" from="GameRoot/Surgery" to="GameRoot/ActiveOrgan" method="_on_Surgery_finished_puzzle"]
+
 

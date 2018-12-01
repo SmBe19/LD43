@@ -28,6 +28,7 @@ func stop_moving():
 	$Dude.scale.x = 1
 	$Dude.scale.y = 1
 	$Dude.copy_organs($NextDude)
+	$"/root/Root/HUD".subtract_waiting()
 
 func can_do_action():
 	return not $KillAnimation.is_playing() and not moving
