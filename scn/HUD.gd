@@ -2,8 +2,9 @@ extends Node
 
 signal waiting_room_full
 
-export(float) var waitingSpeed = 0.1
+export(float) var waitingSpeed = 0.5
 var waiting = 0
+var score = 0
 var survived = 0
 var died = 0
 var money = 0
@@ -15,13 +16,15 @@ func change_money(amount):
 	self.update_money_label()
 	return true
 
+func change_score(amount):
+	score += amount
+	self.update_score_label()
+
 func add_survived():
 	survived += 1
-	self.update_survived_label()
 
 func add_died():
 	died += 1
-	self.update_survived_label()
 
 func subtract_waiting():
 	if waiting >= 1:
@@ -30,11 +33,11 @@ func subtract_waiting():
 	else:
 		return false
 
-func update_survived_label():
-	$Survived.text = survived + "/" + (survived + died)
+func update_score_label():
+	$Score.text = str(score)
 
 func update_money_label():
-	$Money.text = "$ " + money
+	$Money.text = "$ " + str(money)
 
 func _ready():
 	pass

@@ -19,9 +19,8 @@ func apply_offset():
 	$NextDude.position.y = offset_nice + next_dude_off
 
 func start_moving():
-	if not moving:
-		moving = true
-		$NextDude.randomize_organs()
+	moving = true
+	$NextDude.randomize_organs()
 
 func stop_moving():
 	offset = 0
@@ -30,9 +29,11 @@ func stop_moving():
 	$Dude.scale.y = 1
 	$Dude.copy_organs($NextDude)
 
+func can_do_action():
+	return not $KillAnimation.is_playing() and not moving
+
 func start_killing():
-	if not $KillAnimation.is_playing() and not moving:
-		$KillAnimation.play("Kill");
+	$KillAnimation.play("Kill");
 
 func kill_finished():
 	self.start_moving()
@@ -50,7 +51,11 @@ func _process(delta):
 		self.apply_offset()
 
 func _on_ButtonNext_pressed():
-	self.start_moving()
+	if self.can_do_action():
+		self.start_moving()
+		$"/root/Root/HUD".change_score($Dude.get_score())
 
 func _on_ButtonKill_pressed():
-	self.start_killing()
+	if self.can_do_action():
+		self.start_killing()
+		$"/root/Root/HUD".change_score(-1)

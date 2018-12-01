@@ -10,7 +10,7 @@
 [ext_resource path="res://img/lkidney.png" type="Texture" id=8]
 [ext_resource path="res://img/rkidney.png" type="Texture" id=9]
 
-[node name="Dude" type="Node2D"]
+[node name="Dude" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 

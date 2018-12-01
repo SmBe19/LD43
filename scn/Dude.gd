@@ -10,6 +10,7 @@ var liver = true
 var lkidney = true
 var rkidney = true
 var organs = {}
+var orig_organs = {}
 
 func rand_bool(prob):
 	return randf() < prob
@@ -21,6 +22,8 @@ func randomize_organs():
 	organs[globals.ORGANS.LIVER] = rand_bool(0.5)
 	organs[globals.ORGANS.LKIDNEY] = rand_bool(0.5)
 	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.5)
+	for k in organs:
+		orig_organs[k] = organs[k]
 	self.apply_organs()
 
 func copy_organs(dude):
@@ -31,6 +34,16 @@ func receive_organ(organ):
 	if not organs[organ]:
 		organs[organ] = true
 		self.apply_organs()
+
+func get_score():
+	var score = 0
+	for i in range(6):
+		if not organs[i]:
+			print("missing ", i)
+			return -7
+		if organs[i] and not orig_organs[i]:
+			score += 2
+	return score
 
 func apply_organs():
 	$brain.present = organs[globals.ORGANS.BRAIN]
