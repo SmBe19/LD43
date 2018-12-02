@@ -45,7 +45,7 @@ pressed = false
 
 shortcut = SubResource( 2 )
 
-[node name="EndMenu" type="Node" index="0"]
+[node name="EndMenu" type="Node"]
 
 script = ExtResource( 1 )
 

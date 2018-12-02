@@ -45,6 +45,7 @@ func start_chop():
 	$Wrapper/tol/scalpel.visible = globals.chop_level == 1
 	$Wrapper/tol/saw.visible = globals.chop_level == 2
 	$Wrapper/tol/saw.playing = globals.chop_level == 2
+	$Wrapper/bloodParticles.amount = 128 if globals.chop_level == 1 else 512
 
 func hide_finished():
 	visible = false
@@ -65,6 +66,7 @@ func finish_chopping(result):
 func reset():
 	fine_used = 0
 	$Wrapper/CutPath.texture = null
+	$Wrapper/bloodParticles.emitting = false
 
 func draw(old_pos, new_pos):
 	var dir = (new_pos - old_pos).normalized()
@@ -75,7 +77,7 @@ func draw(old_pos, new_pos):
 	for i in range(steps):
 		var pos = old_pos + (i+1) * dir
 		if 0 <= pos.x and pos.x < width and 0 <= pos.y and pos.y < height:
-			cut_path.set_pixel(pos.x, pos.y, Color(1, 0, 0, 1))
+			cut_path.set_pixel(pos.x, pos.y, Color(180/255.0, 32/255.0, 42/255.0, 1))
 			var col = path_tex.get_pixel(pos.x, pos.y)
 			if col.r == 0:
 				fine_used += 1
@@ -99,6 +101,7 @@ func update_chop(delta):
 		chop_pos = chop_pos + speeded
 	draw(old_pos, chop_pos)
 	$Wrapper/tol.position = chop_pos * 2
+	$Wrapper/bloodParticles.position = chop_pos * 2
 
 func check_chop():
 	var path_tex = chops[cur_chop].get_data()
@@ -112,13 +115,13 @@ func check_chop():
 				if not in_range:
 					if y == 0:
 						for yy in range(border):
-							if cut_path.get_pixel(x, yy).r == 1:
+							if cut_path.get_pixel(x, yy).a == 1:
 								if not in_range:
 									found += 1
 								in_range = true
 					else:
 						for yy in range(height-border-1, height):
-							if cut_path.get_pixel(x, yy).r == 1:
+							if cut_path.get_pixel(x, yy).a == 1:
 								if not in_range:
 									found += 1
 								in_range = true
@@ -130,13 +133,13 @@ func check_chop():
 				if not in_range:
 					if x == 0:
 						for xx in range(border):
-							if cut_path.get_pixel(xx, y).r == 1:
+							if cut_path.get_pixel(xx, y).a == 1:
 								if not in_range:
 									found += 1
 								in_range = true
 					else:
 						for xx in range(width-border-1, width):
-							if cut_path.get_pixel(xx, y).r == 1:
+							if cut_path.get_pixel(xx, y).a == 1:
 								if not in_range:
 									found += 1
 								in_range = true
@@ -151,6 +154,7 @@ func _process(delta):
 	if cur_chop != -1:
 		var is_down = Input.is_mouse_button_pressed(BUTTON_LEFT)
 		if not was_down and is_down:
+			$Wrapper/bloodParticles.emitting = true
 			cut_path = Image.new()
 			cut_path.create(width, height, false, Image.FORMAT_RGBAF)
 			cut_path_tex = ImageTexture.new()

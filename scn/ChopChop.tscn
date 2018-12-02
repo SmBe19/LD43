@@ -1,16 +1,57 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scn/ChopChop.gd" type="Script" id=1]
 [ext_resource path="res://img/skin.png" type="Texture" id=2]
 [ext_resource path="res://img/chopchop/chop1.png" type="Texture" id=3]
-[ext_resource path="res://img/scalpel.png" type="Texture" id=4]
-[ext_resource path="res://img/saw1.png" type="Texture" id=5]
-[ext_resource path="res://img/saw2.png" type="Texture" id=6]
+[ext_resource path="res://scn/BloodColorRamp.tres" type="Texture" id=4]
+[ext_resource path="res://img/scalpel.png" type="Texture" id=5]
+[ext_resource path="res://img/saw1.png" type="Texture" id=6]
+[ext_resource path="res://img/saw2.png" type="Texture" id=7]
+
+[sub_resource type="ParticlesMaterial" id=6]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 3.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 85.0
+initial_velocity_random = 0.5
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -80.0
+linear_accel_random = 0.5
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 4.0
+scale_random = 0.0
+color_ramp = ExtResource( 4 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Initial Velocity" ]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0
@@ -138,13 +179,35 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 expand = true
 
-[node name="tol" type="Node2D" parent="Wrapper" index="3"]
+[node name="bloodParticles" type="Particles2D" parent="Wrapper" index="3"]
+
+emitting = false
+amount = 128
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.5
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 6 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform" ]
+
+[node name="tol" type="Node2D" parent="Wrapper" index="4"]
 
 [node name="scalpel" type="Sprite" parent="Wrapper/tol" index="0"]
 
 visible = false
 position = Vector2( 14, 14 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="saw" type="AnimatedSprite" parent="Wrapper/tol" index="1"]

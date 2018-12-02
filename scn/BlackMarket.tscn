@@ -20,36 +20,42 @@ texture = ExtResource( 2 )
 
 position = Vector2( -36.2357, -67.9421 )
 price = 50
+use_blood = false
 
 [node name="heart" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( -53.0698, -22.1645 )
 organ_type = 1
 price = 130
+use_blood = false
 
 [node name="lungs" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 6.21524, -43.372 )
 organ_type = 2
 price = 60
+use_blood = false
 
 [node name="liver" parent="." index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 4.63966, -11.2229 )
 organ_type = 3
 price = 170
+use_blood = false
 
 [node name="lkidney" parent="." index="5" instance=ExtResource( 3 )]
 
 position = Vector2( -46.2759, 73.074 )
 organ_type = 4
 price = 200
+use_blood = false
 
 [node name="rkidney" parent="." index="6" instance=ExtResource( 3 )]
 
 position = Vector2( -33.3852, 31.8596 )
 organ_type = 5
 price = 200
+use_blood = false
 
 [node name="beltWrapper" type="Control" parent="." index="7"]
 

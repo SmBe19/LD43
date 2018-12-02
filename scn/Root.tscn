@@ -170,6 +170,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="ChopChop" parent="GameRoot" index="5" instance=ExtResource( 10 )]
 
+visible = false
 position = Vector2( 320, 180 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 

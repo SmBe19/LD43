@@ -3,6 +3,7 @@ extends Node2D
 export(float) var moving_speed = 182
 
 var moving = false
+var score_change = 0
 var offset = 0
 
 onready var belt_off = $BeltSprite.position.y
@@ -19,11 +20,16 @@ func apply_offset():
 	$NextDude.position.y = offset_nice + next_dude_off
 
 func start_moving():
+	score_change = 0
 	moving = true
 	$NextDude.randomize_organs()
 	$"/root/Root/HUD".subtract_waiting()
 
 func stop_moving():
+	if score_change != 0:
+		$"/root/Root/HUD".change_score(score_change)
+		if score_change > 0:
+			$"/root/Root/HUD".change_money(score_change*10)
 	offset = 0
 	moving = false
 	$Dude.scale.x = 1
@@ -42,6 +48,7 @@ func start_killing():
 
 func kill_finished():
 	self.start_moving()
+	$"/root/Root/HUD".change_score(-1)
 
 func _ready():
 	randomize()
@@ -58,12 +65,8 @@ func _process(delta):
 func _on_ButtonNext_pressed():
 	if self.can_do_action():
 		self.start_moving()
-		var score = $Dude.get_score()
-		$"/root/Root/HUD".change_score(score)
-		if score > 0:
-			$"/root/Root/HUD".change_money(score*10)
+		score_change = $Dude.get_score()
 
 func _on_ButtonKill_pressed():
 	if self.can_do_action():
 		self.start_killing()
-		$"/root/Root/HUD".change_score(-1)

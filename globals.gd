@@ -12,8 +12,8 @@ var death_speed_acc = 0.02
 var chop_difficulty = 1
 var chop_level = 1
 
-var money = 0
-var score = 0 setget score_set, score_get
+var money = 1000000
+var score = 1000 setget score_set, score_get
 var max_score = 0
 
 var fail_reason = "fired for low self-esteem"

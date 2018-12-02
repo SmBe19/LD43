@@ -8,6 +8,7 @@ enum ORGANS {BRAIN=0, HEART=1, LUNGS=2, LIVER=3, LKIDNEY=4, RKIDNEY=5}
 
 export(ORGANS) var organ_type = ORGANS.BRAIN
 export(int) var price = 0
+export(bool) var use_blood = true
 
 const textures = [
 	preload("res://img/brain.png"),
@@ -34,14 +35,14 @@ func get_modulate():
 
 func present_set(val):
 	present = val
-	modulate = get_modulate()
+	$Sprite.modulate = get_modulate()
 
 func present_get():
 	return present
 
 func alive_set(val):
 	alive = val
-	modulate = get_modulate()
+	$Sprite.modulate = get_modulate()
 
 func alive_get(val):
 	return alive
@@ -69,6 +70,10 @@ func can_buy():
 		return get_node("/root/globals").money >= price
 	return true
 
+func do_blood():
+	if use_blood:
+		$bloodParticles.restart()
+
 func to_nice_local(position):
 	return position + Vector2(width/2, height/2)
 
@@ -87,5 +92,6 @@ func _input(event):
 				if self.should_accept_input(nice_local_pos):
 					if event.is_pressed():
 						emit_signal("take_organ", organ_type)
+						self.do_blood()
 					else:
 						emit_signal("drop_organ", organ_type)
