@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scn/Dude.gd" type="Script" id=1]
 [ext_resource path="res://img/person.png" type="Texture" id=2]
 [ext_resource path="res://scn/Organ.tscn" type="PackedScene" id=3]
 [ext_resource path="res://img/clothes.png" type="Texture" id=4]
-[ext_resource path="res://img/sunglasses.png" type="Texture" id=5]
+[ext_resource path="res://img/eyes.png" type="Texture" id=5]
+[ext_resource path="res://img/sunglasses.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -62,7 +63,16 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[node name="Dude" type="Node2D"]
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), null ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[node name="Dude" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -138,12 +148,20 @@ position = Vector2( 0, 2 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="sunglasses" type="Sprite" parent="." index="9"]
+[node name="eyes" type="AnimatedSprite" parent="." index="9"]
 
-texture = ExtResource( 5 )
+frames = SubResource( 3 )
+animation = "default"
+frame = 3
+playing = true
 _sections_unfolded = [ "Transform" ]
 
-[node name="ChopButton" type="TextureButton" parent="." index="10"]
+[node name="sunglasses" type="Sprite" parent="." index="10"]
+
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ChopButton" type="TextureButton" parent="." index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
