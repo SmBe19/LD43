@@ -27,7 +27,7 @@ func _on_btn_green_pressed():
 func _ready():
 	$FailReason.text = globals.fail_reason
 	$NickName.grab_focus()
-	$HighScoreName.text = "Loading highscore...\n\nYour score: " + str(globals.score)
+	$HighScoreName.text = "Loading highscore...\n\nYour score: " + str(globals.max_score)
 	self.get_highscore()
 
 func _input(event):
@@ -36,7 +36,7 @@ func _input(event):
 		get_tree().set_input_as_handled()
 
 func _on_SubmitButton_pressed():
-	self.submit_highscore($NickName.text, globals.score)
+	self.submit_highscore($NickName.text, globals.max_score)
 
 func _on_SubmitRequest_request_completed(result, response_code, headers, body):
 	if response_code == 200:
@@ -48,13 +48,13 @@ func _on_SubmitRequest_request_completed(result, response_code, headers, body):
 
 func _on_HighscoreRequest_request_completed(result, response_code, headers, body):
 	if response_code != 200:
-		$HighScore.text = "Could not load highscores...\n\nYour score: " + str(globals.score)
+		$HighScore.text = "Could not load highscores...\n\nYour score: " + str(globals.max_score)
 	else:
 		var username = $NickName.text
 		if len(username) == 0:
 			username = "You"
 		username = "-> " + username + " <-"
-		var score = globals.score
+		var score = globals.max_score
 		var high = JSON.parse(body.get_string_from_utf8())
 		var textUsers = ""
 		var textScore = ""

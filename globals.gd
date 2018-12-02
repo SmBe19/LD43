@@ -13,9 +13,17 @@ var chop_difficulty = 1
 var chop_level = 1
 
 var money = 0
-var score = 0
+var score = 0 setget score_set, score_get
+var max_score = 0
 
 var fail_reason = "fired for low self-esteem"
+
+func score_set(val):
+	score = val
+	max_score = max(max_score, val)
+
+func score_get():
+	return score
 
 func reset():
 	organ_drag_drop_enabled = true
@@ -25,6 +33,7 @@ func reset():
 	chop_level = 1
 	money = 250
 	score = 20
+	max_score = 20
 
 func start_game():
 	reset()
