@@ -43,12 +43,24 @@ func belt_price():
 func set_belt_price():
 	$beltWrapper/beltPrice.text = "$ " + str(belt_price()/1000) + "M"
 
+func saw_price():
+	return 1000
+
+func set_saw_price():
+	$sawWrapper/sawPrice.text = "$ " + str(saw_price()/1000) + "M"
+
 func _ready():
 	self.set_belt_price()
+	self.set_saw_price()
 
-func _on_belt_pressed():
+func _on_belt_button_down():
 	if $"/root/Root/HUD".change_money(-belt_price()):
 		$"../Belts".add_belt()
 		self.set_belt_price()
 		if self.belt_price() < 0:
 			$beltWrapper.visible = false
+
+func _on_saw_button_down():
+	if $"/root/Root/HUD".change_money(-saw_price()):
+		$sawWrapper.visible = false
+		globals.chop_level += 1

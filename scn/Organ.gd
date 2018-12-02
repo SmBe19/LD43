@@ -22,19 +22,29 @@ const width = 64
 const height = 64
 
 var present = false setget present_set, present_get
+var alive = false setget alive_set, alive_get
 
-func get_modulate(active):
-	if active:
-		return Color(1, 1, 1, 1)
-	else:
+func get_modulate():
+	if not present:
 		return Color(0.2, 0.2, 0.2, 0.2)
+	elif not alive:
+		return Color(0.1, 0.2, 0, 0.5)
+	else:
+		return Color(1, 1, 1, 1)
 
 func present_set(val):
 	present = val
-	modulate = get_modulate(val)
+	modulate = get_modulate()
 
 func present_get():
 	return present
+
+func alive_set(val):
+	alive = val
+	modulate = get_modulate()
+
+func alive_get(val):
+	return alive
 
 func _ready():
 	$Sprite.texture = textures[organ_type]
@@ -66,6 +76,8 @@ func _input(event):
 	if Engine.editor_hint:
 		return
 	if get_node("/root/globals") and not get_node("/root/globals").organ_drag_drop_enabled:
+		return
+	if not visible:
 		return
 	if event is InputEventMouseButton:
 		if self.can_buy():

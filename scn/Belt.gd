@@ -21,6 +21,7 @@ func apply_offset():
 func start_moving():
 	moving = true
 	$NextDude.randomize_organs()
+	$"/root/Root/HUD".subtract_waiting()
 
 func stop_moving():
 	offset = 0
@@ -28,7 +29,6 @@ func stop_moving():
 	$Dude.scale.x = 1
 	$Dude.scale.y = 1
 	$Dude.copy_organs($NextDude)
-	$"/root/Root/HUD".subtract_waiting()
 
 func hide_dude():
 	$Dude.scale.x = 0
@@ -58,7 +58,10 @@ func _process(delta):
 func _on_ButtonNext_pressed():
 	if self.can_do_action():
 		self.start_moving()
-		$"/root/Root/HUD".change_score($Dude.get_score())
+		var score = $Dude.get_score()
+		$"/root/Root/HUD".change_score(score)
+		if score > 0:
+			$"/root/Root/HUD".change_money(score*10)
 
 func _on_ButtonKill_pressed():
 	if self.can_do_action():

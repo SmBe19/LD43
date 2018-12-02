@@ -2,14 +2,18 @@ extends Node2D
 
 signal take_organ_from_dude(dude, organ)
 signal drop_organ_to_dude(dude, organ)
+signal start_chop(dude)
 
 var organs = {}
 var orig_organs = {}
 var alive = false
+var chopped = false
 var alive_since = 0
 const base_lifetime = 40
-const lifetimes = [40, 30, 30, 10, 10, 10]
+const lifetimes = [50, 40, 40, 15, 15, 15]
 var max_lifetime = 100
+
+onready var organ_objs = [$brain, $heart, $lungs, $liver, $lkidney, $rkidney]
 
 func _ready():
 	max_lifetime = base_lifetime
@@ -31,6 +35,7 @@ func randomize_organs():
 		orig_organs[k] = organs[k]
 	alive_since = 0
 	alive = true
+	chopped = false
 	self.apply_organs()
 
 func copy_organs(dude):
@@ -38,8 +43,9 @@ func copy_organs(dude):
 		organs[k] = dude.organs[k]
 	for k in organs:
 		orig_organs[k] = organs[k]
-	alive_since = 0
-	alive = true
+	alive_since = dude.alive_since
+	alive = dude.alive
+	chopped = dude.chopped
 	self.apply_organs()
 
 func receive_organ(organ):
@@ -62,6 +68,14 @@ func get_score():
 			score += 2
 	return score
 
+func chop():
+	chopped = true
+	self.apply_organs()
+
+func chop_fail():
+	chopped = true
+	die()
+
 func get_lifetime():
 	var lifetime = base_lifetime
 	for i in range(6):
@@ -69,15 +83,18 @@ func get_lifetime():
 			lifetime += lifetimes[i]
 	return lifetime
 
+func die():
+	alive = false
+	alive_since = max_lifetime
+	$LifeBar.value = 0
+	self.apply_organs()
+
 func _process(delta):
 	if not alive:
 		return
 	alive_since += delta * globals.death_speed
 	if alive_since > self.get_lifetime():
-		alive = false
-		for i in range(6):
-			organs[i] = false
-		self.apply_organs()
+		die()
 	$LifeBar.value = self.get_lifetime() - alive_since
 
 func apply_organs():
@@ -87,11 +104,17 @@ func apply_organs():
 	$liver.present = organs[globals.ORGANS.LIVER]
 	$lkidney.present = organs[globals.ORGANS.LKIDNEY]
 	$rkidney.present = organs[globals.ORGANS.RKIDNEY]
+	
+	for child in organ_objs:
+		child.alive = alive
+		child.visible = chopped
+	
+	$ChopButton.visible = not chopped
 
 func on_take_organ(organ):
 	if $"..".moving:
 		return
-	if organs[organ]:
+	if alive and organs[organ]:
 		organs[organ] = false
 		self.apply_organs()
 		emit_signal("take_organ_from_dude", self, organ)
@@ -99,5 +122,8 @@ func on_take_organ(organ):
 func on_drop_organ(organ):
 	if $"..".moving:
 		return
-	if not organs[organ]:
+	if alive and not organs[organ]:
 		emit_signal("drop_organ_to_dude", self, organ)
+
+func _on_ChopButton_pressed():
+	emit_signal("start_chop", self)

@@ -17,15 +17,17 @@ func distribute_belts():
 	for i in range(belt_count):
 		var belt = self.get_child(i)
 		belt.position.x = left + i * belt_width + belt_off
-	self.connect_belt_dudes($"..", "on_take_organ", "on_drop_organ")
+	self.connect_belt_dudes($"..", "on_take_organ", "on_drop_organ", "on_start_chop")
 
-func connect_belt_dudes(instance, functiontake, functiondrop):
+func connect_belt_dudes(instance, functiontake, functiondrop, functionchop):
 	for i in range(self.get_child_count()):
 		var dude = self.get_child(i).get_node("Dude")
 		if not dude.is_connected("take_organ_from_dude", instance, functiontake):
 			dude.connect("take_organ_from_dude", instance, functiontake)
 		if not dude.is_connected("drop_organ_to_dude", instance, functiondrop):
 			dude.connect("drop_organ_to_dude", instance, functiondrop)
+		if not dude.is_connected("start_chop", instance, functionchop):
+			dude.connect("start_chop", instance, functionchop)
 
 func add_belt():
 	var new_child = belt.instance()

@@ -1,10 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scn/Surgery.gd" type="Script" id=1]
+[ext_resource path="res://scn/ChopChop.gd" type="Script" id=1]
 [ext_resource path="res://img/pipe_bg.png" type="Texture" id=2]
-[ext_resource path="res://img/skin_overlay.png" type="Texture" id=3]
+[ext_resource path="res://img/scalpel.png" type="Texture" id=3]
+[ext_resource path="res://img/saw1.png" type="Texture" id=4]
+[ext_resource path="res://img/saw2.png" type="Texture" id=5]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="Animation" id=2]
 
 resource_name = "Hide"
 length = 1.0
@@ -33,12 +44,13 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "hiding_finished"
+"method": "hide_finished"
 } ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
+resource_name = "Show"
 length = 0.5
 loop = false
 step = 0.1
@@ -55,80 +67,20 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Surgery" type="Node2D"]
+[node name="ChopChop" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Wrapper" type="Panel" parent="." index="0"]
 
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -224.0
-margin_top = -176.0
-margin_right = 160.0
-margin_bottom = 112.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="Background" type="TextureRect" parent="Wrapper" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 2
-_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Mouse" ]
-
-[node name="skin_overlay" type="NinePatchRect" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -192.0
-margin_top = -144.0
-margin_right = 128.0
-margin_bottom = 80.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 3 )
-patch_margin_left = 48
-patch_margin_top = 48
-patch_margin_right = 48
-patch_margin_bottom = 48
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-_sections_unfolded = [ "Axis Stretch", "Patch Margin", "Rect" ]
-
-[node name="Source" type="Panel" parent="." index="2"]
-
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -250.0
+margin_left = -192.0
 margin_top = -144.0
-margin_right = -202.0
+margin_right = 192.0
 margin_bottom = 144.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -138,15 +90,76 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="ShowHideAnimation" type="AnimationPlayer" parent="." index="3"]
+[node name="BG" type="TextureRect" parent="Wrapper" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+
+[node name="Path" type="TextureRect" parent="Wrapper" index="1"]
+
+modulate = Color( 1, 1, 1, 0.156863 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+expand = true
+_sections_unfolded = [ "Visibility" ]
+
+[node name="CutPath" type="TextureRect" parent="Wrapper" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+expand = true
+
+[node name="tol" type="Node2D" parent="Wrapper" index="3"]
+
+[node name="scalpel" type="Sprite" parent="Wrapper/tol" index="0"]
+
+position = Vector2( 14, 14 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="saw" type="AnimatedSprite" parent="Wrapper/tol" index="1"]
+
+position = Vector2( 14, 14 )
+frames = SubResource( 1 )
+animation = "default"
+_sections_unfolded = [ "Transform" ]
+
+[node name="ShowHideAnimation" type="AnimationPlayer" parent="." index="1"]
 
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Hide = SubResource( 1 )
-anims/Show = SubResource( 2 )
+anims/Hide = SubResource( 2 )
+anims/Show = SubResource( 3 )
 blend_times = [  ]
 
 

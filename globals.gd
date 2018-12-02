@@ -6,3 +6,5 @@ var organ_drag_drop_enabled = true
 
 var death_speed = 1
 var death_speed_acc = 0.01
+
+var chop_level = 1

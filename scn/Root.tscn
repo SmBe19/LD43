@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scn/Root.gd" type="Script" id=1]
 [ext_resource path="res://scn/GameRoot.gd" type="Script" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://scn/BlackMarket.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scn/ActiveOrgan.gd" type="Script" id=8]
 [ext_resource path="res://scn/Surgery.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scn/ChopChop.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 
@@ -47,7 +48,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Root" type="Node" index="0"]
+[node name="Root" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -169,7 +170,12 @@ visible = false
 position = Vector2( 320, 180 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="HUD" parent="." index="1" instance=ExtResource( 10 )]
+[node name="ChopChop" parent="GameRoot" index="5" instance=ExtResource( 10 )]
+
+position = Vector2( 320, 180 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="HUD" parent="." index="1" instance=ExtResource( 11 )]
 
 [connection signal="buy_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_buy_organ"]
 
@@ -180,5 +186,9 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [connection signal="finished_puzzle" from="GameRoot/Surgery" to="GameRoot/ActiveOrgan" method="_on_Surgery_finished_puzzle"]
 
 [connection signal="start_puzzle" from="GameRoot/Surgery" to="GameRoot/BlackMarket" method="_on_Surgery_start_puzzle"]
+
+[connection signal="chop_failed" from="GameRoot/ChopChop" to="GameRoot" method="_on_ChopChop_chop_failed"]
+
+[connection signal="chop_finished" from="GameRoot/ChopChop" to="GameRoot" method="_on_ChopChop_chop_finished"]
 
 

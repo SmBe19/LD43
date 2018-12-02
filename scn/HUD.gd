@@ -8,7 +8,7 @@ var waiting = 0
 var score = 0
 var survived = 0
 var died = 0
-var money = 0
+var money = 250
 
 func change_money(amount):
 	if money + amount < 0:
@@ -41,7 +41,7 @@ func update_money_label():
 	$Money.text = "$ " + str(money) + "k"
 
 func _ready():
-	pass
+	update_money_label()
 
 func _process(delta):
 	waiting += delta * waitingSpeed
