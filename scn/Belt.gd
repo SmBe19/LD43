@@ -49,6 +49,7 @@ func stop_moving():
 	$Dude.scale.x = 1
 	$Dude.scale.y = 1
 	$Dude.copy_organs($NextDude)
+	$NextDude.alive = false
 	$ECGBox.alive()
 
 func hide_dude():

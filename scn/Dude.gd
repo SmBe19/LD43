@@ -129,9 +129,14 @@ func _process(delta):
 	if not alive:
 		return
 	alive_since += delta * globals.death_speed
-	if alive_since > self.get_lifetime():
+	var remaining = self.get_lifetime() - alive_since
+	if remaining < 0:
 		die()
-	$LifeBar.value = self.get_lifetime() - alive_since
+	$LifeBar.value = remaining
+	if remaining < 40:
+		$"../ECGBox".alive_faster((40 - remaining)/40.0 * 4 + 1)
+	else:
+		$"../ECGBox".alive_faster(1)
 
 func apply_organs():
 	$brain.present = organs[globals.ORGANS.BRAIN]
