@@ -66,7 +66,7 @@ func is_inside(position):
 	
 func can_buy():
 	if price > 0:
-		return $"/root/Root/HUD".money >= price
+		return get_node("/root/globals").money >= price
 	return true
 
 func to_nice_local(position):

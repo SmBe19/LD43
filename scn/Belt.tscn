@@ -89,12 +89,12 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 [node name="Dude" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 0, 160 )
+position = Vector2( 0, 180 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="NextDude" parent="." index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 0, -240 )
+position = Vector2( 0, -220 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="button_box" type="Sprite" parent="." index="4"]

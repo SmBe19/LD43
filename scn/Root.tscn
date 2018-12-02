@@ -60,8 +60,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Background" type="Node2D" parent="GameRoot" index="0"]
 
-editor/display_folded = true
-
 [node name="TextureRect" type="TextureRect" parent="GameRoot/Background" index="0"]
 
 anchor_left = 0.0

@@ -1,31 +1,21 @@
 extends Node
 
-signal waiting_room_full
-
 export(float) var waitingSpeed = 0.05
 export(float) var waitingSpeedAcc = 0.0005
 var waiting = 0
-var score = 0
-var survived = 0
-var died = 0
-var money = 250
 
 func change_money(amount):
-	if money + amount < 0:
+	if globals.money + amount < 0:
 		return false
-	money += amount
+	globals.money += amount
 	self.update_money_label()
 	return true
 
 func change_score(amount):
-	score += amount
+	globals.score += amount
 	self.update_score_label()
-
-func add_survived():
-	survived += 1
-
-func add_died():
-	died += 1
+	if globals.score < 0:
+		globals.main_menu("fired for low esteem")
 
 func subtract_waiting():
 	if waiting >= 1:
@@ -35,17 +25,18 @@ func subtract_waiting():
 		return false
 
 func update_score_label():
-	$Score.text = str(score)
+	$Score.text = str(globals.score)
 
 func update_money_label():
-	$Money.text = "$ " + str(money) + "k"
+	$Money.text = "$ " + str(globals.money) + "k"
 
 func _ready():
 	update_money_label()
+	update_score_label()
 
 func _process(delta):
 	waiting += delta * waitingSpeed
 	waitingSpeed += delta * waitingSpeedAcc
 	$Waiting.value = waiting
 	if waiting > $Waiting.max_value:
-		emit_signal("waiting_room_full")
+		globals.main_menu("waiting room full")

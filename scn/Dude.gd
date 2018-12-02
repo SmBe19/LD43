@@ -8,6 +8,7 @@ var organs = {}
 var orig_organs = {}
 var alive = false
 var chopped = false
+var add_ons = [false]
 var alive_since = 0
 const base_lifetime = 60
 const lifetimes = [60, 50, 50, 20, 20, 20]
@@ -33,20 +34,25 @@ func randomize_organs():
 	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.2)
 	for k in organs:
 		orig_organs[k] = organs[k]
+	add_ons = [rand_bool(0.1)]
 	alive_since = 0
 	alive = true
 	chopped = false
 	self.apply_organs()
+	self.apply_addons()
 
 func copy_organs(dude):
 	for k in organs:
 		organs[k] = dude.organs[k]
 	for k in organs:
 		orig_organs[k] = organs[k]
+	for i in range(len(add_ons)):
+		add_ons[i] = dude.add_ons[i]
 	alive_since = dude.alive_since
 	alive = dude.alive
 	chopped = dude.chopped
 	self.apply_organs()
+	self.apply_addons()
 
 func receive_organ(organ):
 	if not alive:
@@ -110,6 +116,9 @@ func apply_organs():
 		child.visible = chopped
 	
 	$ChopButton.visible = not chopped
+
+func apply_addons():
+	$clothes.visible = add_ons[0]
 
 func on_take_organ(organ):
 	if $"..".moving:

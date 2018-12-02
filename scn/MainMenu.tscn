@@ -1,0 +1,363 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scn/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://img/tiles.png" type="Texture" id=2]
+[ext_resource path="res://img/person.png" type="Texture" id=3]
+[ext_resource path="res://img/brain.png" type="Texture" id=4]
+[ext_resource path="res://img/liver.png" type="Texture" id=5]
+[ext_resource path="res://img/lungs.png" type="Texture" id=6]
+[ext_resource path="res://img/scalpel.png" type="Texture" id=7]
+[ext_resource path="res://img/heart.png" type="Texture" id=8]
+[ext_resource path="res://img/blood1.png" type="Texture" id=9]
+[ext_resource path="res://img/button_box.png" type="Texture" id=10]
+[ext_resource path="res://img/btn_green.png" type="Texture" id=11]
+[ext_resource path="res://img/btn_green_pushed.png" type="Texture" id=12]
+[ext_resource path="res://img/btn_red.png" type="Texture" id=13]
+[ext_resource path="res://img/btn_red_pushed.png" type="Texture" id=14]
+[ext_resource path="res://scn/MainMenuSmallFont.tres" type="DynamicFont" id=15]
+[ext_resource path="res://scn/HUDFont.tres" type="DynamicFont" id=16]
+
+[node name="MainMenu" type="Node"]
+
+script = ExtResource( 1 )
+
+[node name="GameRoot" type="Node2D" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="BG" type="TextureRect" parent="GameRoot" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -4.0
+margin_top = -8.0
+margin_right = 582.0
+margin_bottom = 298.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+_sections_unfolded = [ "Rect" ]
+
+[node name="person1" type="Sprite" parent="GameRoot" index="1"]
+
+position = Vector2( 90, 180 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="person2" type="Sprite" parent="GameRoot" index="2"]
+
+position = Vector2( 320, 310 )
+rotation = -1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="person3" type="Sprite" parent="GameRoot" index="3"]
+
+position = Vector2( 450, 60 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="brain" type="Sprite" parent="GameRoot" index="4"]
+
+position = Vector2( 222, 72 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="liver" type="Sprite" parent="GameRoot" index="5"]
+
+position = Vector2( 560, 170 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="lungs" type="Sprite" parent="GameRoot" index="6"]
+
+position = Vector2( 484, 260 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="scalpel" type="Sprite" parent="GameRoot" index="7"]
+
+position = Vector2( 170, 260 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="heart" type="Sprite" parent="GameRoot" index="8"]
+
+position = Vector2( 320, 140 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood1" type="Sprite" parent="GameRoot" index="9"]
+
+position = Vector2( 52.7714, 44.473 )
+rotation = -1.5708
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood2" type="Sprite" parent="GameRoot" index="10"]
+
+position = Vector2( 493.668, 133.406 )
+rotation = 3.14159
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood3" type="Sprite" parent="GameRoot" index="11"]
+
+position = Vector2( 480.102, 327.853 )
+texture = ExtResource( 9 )
+
+[node name="blood4" type="Sprite" parent="GameRoot" index="12"]
+
+position = Vector2( 371.574, 266.949 )
+texture = ExtResource( 9 )
+
+[node name="blood5" type="Sprite" parent="GameRoot" index="13"]
+
+position = Vector2( 136.429, 308.647 )
+rotation = 1.5708
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="button_box1" type="Sprite" parent="GameRoot" index="14"]
+
+position = Vector2( 577.402, 285.552 )
+texture = ExtResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="btn_green" type="TextureButton" parent="GameRoot/button_box1" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -8.0
+margin_top = -25.0
+margin_right = 8.0
+margin_bottom = -9.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+_sections_unfolded = [ "Rect", "Textures", "Transform" ]
+
+[node name="btn_red" type="TextureButton" parent="GameRoot/button_box1" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -8.0
+margin_top = -6.0
+margin_right = 8.0
+margin_bottom = 10.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+_sections_unfolded = [ "Textures", "Transform" ]
+
+[node name="button_box2" type="Sprite" parent="GameRoot" index="15"]
+
+position = Vector2( 139.731, 37.569 )
+texture = ExtResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="btn_green" type="TextureButton" parent="GameRoot/button_box2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -8.0
+margin_top = -25.0
+margin_right = 8.0
+margin_bottom = -9.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+_sections_unfolded = [ "Rect", "Textures", "Transform" ]
+
+[node name="btn_red" type="TextureButton" parent="GameRoot/button_box2" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -8.0
+margin_top = -6.0
+margin_right = 8.0
+margin_bottom = 10.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+_sections_unfolded = [ "Textures", "Transform" ]
+
+[node name="button_box3" type="Sprite" parent="GameRoot" index="16"]
+
+position = Vector2( 44.8097, 300.048 )
+texture = ExtResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="btn_green" type="TextureButton" parent="GameRoot/button_box3" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -8.0
+margin_top = -25.0
+margin_right = 8.0
+margin_bottom = -9.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+_sections_unfolded = [ "Rect", "Textures", "Transform" ]
+
+[node name="btn_red" type="TextureButton" parent="GameRoot/button_box3" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -8.0
+margin_top = -6.0
+margin_right = 8.0
+margin_bottom = 10.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+_sections_unfolded = [ "Textures", "Transform" ]
+
+[node name="FailReason" type="Label" parent="." index="1"]
+
+modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 66.0
+margin_bottom = 109.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 15 )
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
+
+[node name="GameTitle" type="Label" parent="." index="2"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -293.0
+margin_top = -38.0
+margin_right = 293.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 16 )
+text = "Organic Harvest"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
+
+[connection signal="pressed" from="GameRoot/button_box1/btn_green" to="." method="_on_btn_green_pressed"]
+
+[connection signal="pressed" from="GameRoot/button_box1/btn_red" to="." method="_on_btn_red_pressed"]
+
+[connection signal="pressed" from="GameRoot/button_box2/btn_green" to="." method="_on_btn_green_pressed"]
+
+[connection signal="pressed" from="GameRoot/button_box2/btn_red" to="." method="_on_btn_red_pressed"]
+
+[connection signal="pressed" from="GameRoot/button_box3/btn_green" to="." method="_on_btn_green_pressed"]
+
+[connection signal="pressed" from="GameRoot/button_box3/btn_red" to="." method="_on_btn_red_pressed"]
+
+
