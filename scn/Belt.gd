@@ -4,6 +4,7 @@ export(float) var moving_speed = 182
 
 var moving = false
 var score_change = 0
+var feedback_text = ""
 var offset = 0
 
 onready var belt_off = $BeltSprite.position.y
@@ -21,6 +22,7 @@ func apply_offset():
 
 func start_moving():
 	score_change = 0
+	feedback_text = ""
 	moving = true
 	$NextDude.randomize_organs()
 	$"/root/Root/HUD".subtract_waiting()
@@ -30,6 +32,10 @@ func stop_moving():
 		$"/root/Root/HUD".change_score(score_change)
 		if score_change > 0:
 			$"/root/Root/HUD".change_money(score_change*10)
+	if feedback_text != "":
+		$Complaint/ComplaintText.text = feedback_text
+		$Complaint.visible = true
+		$Complaint/ComplaintTimer.start()
 	offset = 0
 	moving = false
 	$Dude.scale.x = 1
@@ -51,6 +57,7 @@ func kill_finished():
 	$"/root/Root/HUD".change_score(-1)
 
 func _ready():
+	$Complaint.visible = false
 	randomize()
 	self.apply_offset()
 	$Dude.randomize_organs()
@@ -66,7 +73,11 @@ func _on_ButtonNext_pressed():
 	if self.can_do_action():
 		self.start_moving()
 		score_change = $Dude.get_score()
+		feedback_text = $Dude.get_feedback_text()
 
 func _on_ButtonKill_pressed():
 	if self.can_do_action():
 		self.start_killing()
+
+func _on_ComplaintTimer_timeout():
+	$Complaint.visible = false

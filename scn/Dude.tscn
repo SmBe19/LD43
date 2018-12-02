@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scn/Dude.gd" type="Script" id=1]
 [ext_resource path="res://img/person.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://img/clothes.png" type="Texture" id=4]
 [ext_resource path="res://img/eyes.png" type="Texture" id=5]
 [ext_resource path="res://img/sunglasses.png" type="Texture" id=6]
+[ext_resource path="res://img/bandana.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -152,7 +153,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 3 )
 animation = "default"
-frame = 3
+frame = 4
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -161,7 +162,12 @@ _sections_unfolded = [ "Transform" ]
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ChopButton" type="TextureButton" parent="." index="11"]
+[node name="bandana" type="Sprite" parent="." index="11"]
+
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ChopButton" type="TextureButton" parent="." index="12"]
 
 anchor_left = 0.0
 anchor_top = 0.0

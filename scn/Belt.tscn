@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scn/Belt.gd" type="Script" id=1]
 [ext_resource path="res://img/belt_bg_0.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://img/btn_green_pushed.png" type="Texture" id=8]
 [ext_resource path="res://img/btn_red.png" type="Texture" id=9]
 [ext_resource path="res://img/btn_red_pushed.png" type="Texture" id=10]
+[ext_resource path="res://img/speech.png" type="Texture" id=11]
+[ext_resource path="res://fnt/dejavu/DejaVuSans.ttf" type="DynamicFontData" id=12]
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -19,6 +21,60 @@ animations = [ {
 "name": "default",
 "speed": 2.5
 } ]
+
+[sub_resource type="Curve" id=3]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.749349, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+
+flags = 4
+width = 2048
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 0.1, 10, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.5
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -100.0
+linear_accel_random = 0.5
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 50.0
+damping_random = 0.5
+angle = 0.0
+angle_random = 0.0
+scale = 2.0
+scale_random = 0.0
+scale_curve = SubResource( 4 )
+color = Color( 0.87451, 0.243137, 0.137255, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Emission Shape" ]
 
 [sub_resource type="Animation" id=1]
 
@@ -76,6 +132,26 @@ tracks/3/keys = {
 "method": "kill_finished"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("splashParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+
+size = 24
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 12 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [node name="Belt" type="Node2D"]
 
@@ -88,11 +164,33 @@ moving_speed = 182
 position = Vector2( 0, 180 )
 frames = SubResource( 2 )
 animation = "default"
-frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 
-[node name="BeltSprite" type="Sprite" parent="." index="1"]
+[node name="splashParticles" type="Particles2D" parent="." index="1"]
+
+position = Vector2( 0, 180 )
+emitting = false
+amount = 256
+lifetime = 2.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 5 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+
+[node name="BeltSprite" type="Sprite" parent="." index="2"]
 
 position = Vector2( 0, 120 )
 texture = ExtResource( 4 )
@@ -100,22 +198,22 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 80, 560 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="Dude" parent="." index="2" instance=ExtResource( 5 )]
+[node name="Dude" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 0, 180 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="NextDude" parent="." index="3" instance=ExtResource( 5 )]
+[node name="NextDude" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 0, -220 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="button_box" type="Sprite" parent="." index="4"]
+[node name="button_box" type="Sprite" parent="." index="5"]
 
 position = Vector2( 40.9116, 165.245 )
 texture = ExtResource( 6 )
 
-[node name="ButtonNext" type="TextureButton" parent="." index="5"]
+[node name="ButtonNext" type="TextureButton" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -140,7 +238,7 @@ texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 _sections_unfolded = [ "Rect", "Textures" ]
 
-[node name="ButtonKill" type="TextureButton" parent="." index="6"]
+[node name="ButtonKill" type="TextureButton" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -165,7 +263,7 @@ texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 10 )
 _sections_unfolded = [ "Hint", "Rect", "Textures" ]
 
-[node name="KillAnimation" type="AnimationPlayer" parent="." index="7"]
+[node name="KillAnimation" type="AnimationPlayer" parent="." index="8"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -175,8 +273,72 @@ playback_speed = 1.0
 anims/Kill = SubResource( 1 )
 blend_times = [  ]
 
+[node name="Complaint" type="Node2D" parent="." index="9"]
+
+position = Vector2( -43.0745, 231.324 )
+z_index = 1
+_sections_unfolded = [ "Z Index" ]
+
+[node name="ComplaintBG" type="NinePatchRect" parent="Complaint" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 69.0
+margin_bottom = 62.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 33, 33 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+_sections_unfolded = [ "Patch Margin", "Rect" ]
+
+[node name="ComplaintText" type="Label" parent="Complaint" index="1"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = 214.0
+margin_bottom = 172.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+text = "Hey, you forgot something!"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "Visibility", "custom_fonts" ]
+
+[node name="ComplaintTimer" type="Timer" parent="Complaint" index="2"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = true
+autostart = false
+
 [connection signal="pressed" from="ButtonNext" to="." method="_on_ButtonNext_pressed"]
 
 [connection signal="pressed" from="ButtonKill" to="." method="_on_ButtonKill_pressed"]
+
+[connection signal="timeout" from="Complaint/ComplaintTimer" to="." method="_on_ComplaintTimer_timeout"]
 
 

@@ -1,6 +1,14 @@
 extends Node
 
 enum ORGANS {BRAIN=0, HEART=1, LUNGS=2, LIVER=3, LKIDNEY=4, RKIDNEY=5}
+const ORGAN_NAMES = [
+	"brain",
+	"heart",
+	"lungs",
+	"liver",
+	"kidney",
+	"kidney",
+]
 
 var organ_drag_drop_enabled = true
 

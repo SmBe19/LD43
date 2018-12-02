@@ -8,7 +8,7 @@ var organs = {}
 var orig_organs = {}
 var alive = false
 var chopped = false
-var add_ons = [false, false, false]
+var add_ons = [false, false, false, false]
 var alive_since = 0
 const base_lifetime = 60
 const lifetimes = [60, 50, 50, 20, 20, 20]
@@ -34,7 +34,7 @@ func randomize_organs():
 	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.2)
 	for k in organs:
 		orig_organs[k] = organs[k]
-	add_ons = [rand_bool(0.1), rand_bool(0.05), rand_bool(0.05)]
+	add_ons = [rand_bool(0.1), rand_bool(0.05), rand_bool(0.05), rand_bool(0.05)]
 	alive_since = 0
 	alive = true
 	chopped = false
@@ -61,18 +61,47 @@ func receive_organ(organ):
 		organs[organ] = true
 		self.apply_organs()
 
+func get_missing():
+	var missing = []
+	for i in range(5):
+		if not organs[i]:
+			if i == 4 and organs[5]:
+				continue
+			missing.append(i)
+	return missing
+
 func get_score():
 	if not alive:
-		return -17
+		return -11
 	var score = 3
+	var missing = len(self.get_missing())
 	for i in range(6):
-		if not organs[i]:
-			if not((i == 4 or i == 5) and (organs[4] or organs[5])):
-				print("missing ", i)
-				return -7
 		if organs[i] and not orig_organs[i]:
 			score += 2
+	if missing > 0:
+		return -missing - 3
 	return score
+
+func get_feedback_text():
+	if not alive:
+		return "Hey, this one is dead!"
+	var score = self.get_score()
+	if score == -8:
+		return "Hey, this one is empty!"
+	if score < 0:
+		return "Hey, you forgot the " + self.get_missing_organs() + "!"
+	return "Thanks, as good as new!"
+
+func get_missing_organs():
+	var missing = self.get_missing()
+	if len(missing) == 0:
+		return "nothing"
+	var txt = globals.ORGAN_NAMES[missing[0]]
+	for i in range(1, len(missing) - 1):
+		txt += ", " + globals.ORGAN_NAMES[missing[i]]
+	if len(missing) > 1:
+		txt += " and " + globals.ORGAN_NAMES[missing[-1]]
+	return txt
 
 func chop():
 	chopped = true
@@ -121,6 +150,7 @@ func apply_addons():
 	$clothes.visible = add_ons[0]
 	$sunglasses.visible = add_ons[1]
 	$eyes.visible = add_ons[2]
+	$bandana.visible = add_ons[3]
 
 func on_take_organ(organ):
 	if $"..".moving:
