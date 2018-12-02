@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scn/Belt.gd" type="Script" id=1]
 [ext_resource path="res://img/belt_bg_0.png" type="Texture" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://scn/ECGBox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://img/speech.png" type="Texture" id=12]
 [ext_resource path="res://fnt/dejavu/DejaVuSans.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://snd/belt.wav" type="AudioStream" id=14]
+[ext_resource path="res://snd/thunk.wav" type="AudioStream" id=15]
+[ext_resource path="res://snd/squeak.wav" type="AudioStream" id=16]
+[ext_resource path="res://snd/splosh.wav" type="AudioStream" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -77,6 +81,14 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape" ]
 
+[sub_resource type="DynamicFont" id=7]
+
+size = 24
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 13 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
 [sub_resource type="Animation" id=5]
 
 length = 3.0
@@ -101,7 +113,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 2, 3 ),
+"times": PoolRealArray( 0, 1, 2.1, 3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 120 ), Vector2( 40, 120 ), Vector2( 40, 120 ), Vector2( 0, 120 ) ]
@@ -144,20 +156,105 @@ tracks/4/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("SqueakSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5, 2.1, 2.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ThunkSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("SploshSound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="Animation" id=8]
 
-size = 24
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 13 )
-_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+resource_name = "Next"
+length = 4.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 3.6, 3.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 4 ),
+"update": 0,
+"values": [ 0, 10.0, 390.0, 390.0, 400.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop_moving"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MovingSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ThunkSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3.5, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
-[node name="Belt" type="Node2D"]
+[node name="Belt" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-moving_speed = 182
+offset = 0.0
 
 [node name="belt_bg" type="AnimatedSprite" parent="." index="0"]
 
@@ -201,6 +298,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 [node name="Dude" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 0, 180 )
+scale = Vector2( 1e-05, 1e-05 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="NextDude" parent="." index="4" instance=ExtResource( 5 )]
@@ -263,21 +361,11 @@ texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 10 )
 _sections_unfolded = [ "Hint", "Rect", "Textures" ]
 
-[node name="KillAnimation" type="AnimationPlayer" parent="." index="8"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
-anims/Kill = SubResource( 5 )
-blend_times = [  ]
-
-[node name="ECGBox" parent="." index="9" instance=ExtResource( 11 )]
+[node name="ECGBox" parent="." index="8" instance=ExtResource( 11 )]
 
 position = Vector2( 50, 100 )
 
-[node name="Complaint" type="Node2D" parent="." index="10"]
+[node name="Complaint" type="Node2D" parent="." index="9"]
 
 editor/display_folded = true
 position = Vector2( -43.0745, 231.324 )
@@ -339,6 +427,61 @@ process_mode = 1
 wait_time = 5.0
 one_shot = true
 autostart = false
+
+[node name="BeltAnimation" type="AnimationPlayer" parent="." index="10"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Kill = SubResource( 5 )
+anims/Next = SubResource( 8 )
+blend_times = [  ]
+
+[node name="MovingSound" type="AudioStreamPlayer2D" parent="." index="11"]
+
+stream = ExtResource( 14 )
+volume_db = -2.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="ThunkSound" type="AudioStreamPlayer2D" parent="." index="12"]
+
+stream = ExtResource( 15 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="SqueakSound" type="AudioStreamPlayer2D" parent="." index="13"]
+
+stream = ExtResource( 16 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="SploshSound" type="AudioStreamPlayer2D" parent="." index="14"]
+
+stream = ExtResource( 17 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="pressed" from="ButtonNext" to="." method="_on_ButtonNext_pressed"]
 

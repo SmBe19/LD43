@@ -155,7 +155,7 @@ func apply_addons():
 	$eyesCreepy.visible = add_ons[4]
 
 func on_take_organ(organ):
-	if $"..".moving:
+	if $"../BeltAnimation".is_playing():
 		return
 	if alive and organs[organ]:
 		organs[organ] = false
@@ -163,7 +163,7 @@ func on_take_organ(organ):
 		emit_signal("take_organ_from_dude", self, organ)
 
 func on_drop_organ(organ):
-	if $"..".moving:
+	if $"../BeltAnimation".is_playing():
 		return
 	if alive and not organs[organ]:
 		emit_signal("drop_organ_to_dude", self, organ)

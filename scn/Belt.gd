@@ -1,11 +1,10 @@
 extends Node2D
 
-export(float) var moving_speed = 182
+export(float) var offset = 0 setget offset_set, offset_get
 
-var moving = false
+var is_ready = false
 var score_change = 0
 var feedback_text = ""
-var offset = 0
 
 onready var belt_off = $BeltSprite.position.y
 onready var dude_off = $Dude.position.y
@@ -15,16 +14,25 @@ const height = 400
 const belt_size = 80
 
 func apply_offset():
+	if not is_ready:
+		return
 	var offset_nice = int(floor(offset))
 	$BeltSprite.position.y = offset_nice % belt_size + belt_off
 	$Dude.position.y = offset_nice + dude_off
 	$NextDude.position.y = offset_nice + next_dude_off
 
+func offset_set(val):
+	offset = val
+	self.apply_offset()
+
+func offset_get():
+	return offset
+
 func start_moving():
 	$ECGBox.off()
 	score_change = 0
 	feedback_text = ""
-	moving = true
+	$BeltAnimation.play("Next")
 	$NextDude.randomize_organs()
 	$"/root/Root/HUD".subtract_waiting()
 
@@ -37,8 +45,7 @@ func stop_moving():
 		$Complaint/ComplaintText.text = feedback_text
 		$Complaint.visible = true
 		$Complaint/ComplaintTimer.start()
-	offset = 0
-	moving = false
+	self.offset = 0
 	$Dude.scale.x = 1
 	$Dude.scale.y = 1
 	$Dude.copy_organs($NextDude)
@@ -49,11 +56,11 @@ func hide_dude():
 	$Dude.scale.y = 0
 
 func can_do_action():
-	return not $KillAnimation.is_playing() and not moving
+	return not $BeltAnimation.is_playing()
 
 func start_killing():
 	$ECGBox.off()
-	$KillAnimation.play("Kill")
+	$BeltAnimation.play("Kill")
 	if randf() < 0.1:
 		$"/root/Root/GameRoot".add_blood()
 
@@ -62,17 +69,11 @@ func kill_finished():
 	$"/root/Root/HUD".change_score(-1)
 
 func _ready():
+	is_ready = true
 	$Complaint.visible = false
 	randomize()
 	self.apply_offset()
 	$Dude.randomize_organs()
-
-func _process(delta):
-	if moving:
-		offset += delta * moving_speed
-		if offset > height:
-			self.stop_moving()
-		self.apply_offset()
 
 func _on_ButtonNext_pressed():
 	if self.can_do_action():
