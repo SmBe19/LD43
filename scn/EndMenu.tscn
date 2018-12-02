@@ -140,7 +140,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 6 )
 animation = "default"
-frame = 4
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -442,6 +442,7 @@ texture = ExtResource( 21 )
 
 frames = SubResource( 5 )
 animation = "default"
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 
