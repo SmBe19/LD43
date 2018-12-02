@@ -21,7 +21,7 @@ func apply_offset():
 	$NextDude.position.y = offset_nice + next_dude_off
 
 func start_moving():
-	$ECGBox/ECG.play("off")
+	$ECGBox.off()
 	score_change = 0
 	feedback_text = ""
 	moving = true
@@ -42,12 +42,7 @@ func stop_moving():
 	$Dude.scale.x = 1
 	$Dude.scale.y = 1
 	$Dude.copy_organs($NextDude)
-	self.playECG("alive")
-
-func playECG(animation):
-	$ECGBox/ECG.play(animation)
-	$ECGBox/ECG.frame = randi()%$ECGBox/ECG.frames.get_frame_count(animation)
-	$ECGBox/ECG.frames.set_animation_speed(animation, 10 + randf() * 15)
+	$ECGBox.alive()
 
 func hide_dude():
 	$Dude.scale.x = 0
@@ -57,8 +52,8 @@ func can_do_action():
 	return not $KillAnimation.is_playing() and not moving
 
 func start_killing():
-	$ECGBox/ECG.play("off")
-	$KillAnimation.play("Kill");
+	$ECGBox.off()
+	$KillAnimation.play("Kill")
 	if randf() < 0.1:
 		$"/root/Root/GameRoot".add_blood()
 

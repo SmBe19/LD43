@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ecg_flat.wav-c559bf76a6714c111df0eb7d428355b9.sample"
+
+[deps]
+
+source_file="res://snd/ecg_flat.wav"
+dest_files=[ "res://.import/ecg_flat.wav-c559bf76a6714c111df0eb7d428355b9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

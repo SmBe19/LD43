@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scn/Dude.gd" type="Script" id=1]
 [ext_resource path="res://img/person.png" type="Texture" id=2]
@@ -71,6 +71,15 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 2.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), null, null, null, null, null, null, null, null, null, null, null ],
+"loop": true,
+"name": "default",
+"speed": 1.0
 } ]
 
 [node name="Dude" type="Node2D"]
@@ -154,21 +163,28 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 3 )
 animation = "default"
-frame = 8
+frame = 2
 playing = true
 _sections_unfolded = [ "Transform" ]
 
-[node name="sunglasses" type="Sprite" parent="." index="10"]
+[node name="eyesCreepy" type="AnimatedSprite" parent="." index="10"]
+
+frames = SubResource( 4 )
+animation = "default"
+frame = 5
+playing = true
+
+[node name="sunglasses" type="Sprite" parent="." index="11"]
 
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="bandana" type="Sprite" parent="." index="11"]
+[node name="bandana" type="Sprite" parent="." index="12"]
 
 texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ChopButton" type="TextureButton" parent="." index="12"]
+[node name="ChopButton" type="TextureButton" parent="." index="13"]
 
 anchor_left = 0.0
 anchor_top = 0.0
