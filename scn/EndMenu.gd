@@ -4,6 +4,8 @@ var submitted = false
 var username = ""
 
 func submit_highscore(username, score):
+	if submitted:
+		return
 	# please don't submit fake scores, would be sad to take down the high score system
 	self.username = username
 	var magic = score % 17 * len(username) + floor(score / 17)
@@ -11,6 +13,7 @@ func submit_highscore(username, score):
 	$NickName.visible = false
 	$SubmitButton.visible = false
 	submitted = true
+	print("submit ", username, ": ", score)
 
 func get_highscore():
 	$HighscoreRequest.request("http://ludumdare.games.smeanox.com/LD43/hs/get.php")
@@ -24,6 +27,7 @@ func _on_btn_green_pressed():
 func _ready():
 	$FailReason.text = globals.fail_reason
 	$NickName.grab_focus()
+	$HighScoreName.text = "Loading highscore...\n\nYour score: " + str(globals.score)
 	self.get_highscore()
 
 func _input(event):
@@ -35,17 +39,40 @@ func _on_SubmitButton_pressed():
 	self.submit_highscore($NickName.text, globals.score)
 
 func _on_SubmitRequest_request_completed(result, response_code, headers, body):
-	self.get_highscore()
+	if response_code == 200:
+		self.get_highscore()
+	else:
+		submitted = false
+		$NickName.visible = true
+		$SubmitButton.visible = true
 
 func _on_HighscoreRequest_request_completed(result, response_code, headers, body):
 	if response_code != 200:
-		$HighScore.text = "Could not load highscores..."
+		$HighScore.text = "Could not load highscores...\n\nYour score: " + str(globals.score)
 	else:
+		var username = $NickName.text
+		if len(username) == 0:
+			username = "You"
+		username = "-> " + username + " <-"
+		var score = globals.score
 		var high = JSON.parse(body.get_string_from_utf8())
 		var textUsers = ""
 		var textScore = ""
-		for res in high.result:
+		var found = false
+		var ress = high.result
+		while len(ress) > 8:
+			ress.pop_back()
+		for res in ress:
+			if not found and res.score <= score:
+				textUsers += username + "\n"
+				textScore += str(score) + "\n"
+				found = true
+			if res.name == username and int(res.score) == score:
+				continue
 			textUsers += res.name + "\n"
 			textScore += str(res.score) + "\n"
+		if not found:
+			textUsers += username + "\n"
+			textScore += str(score) + "\n"
 		$HighScoreName.text = textUsers
 		$HighScoreScore.text = textScore

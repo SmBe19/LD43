@@ -4,9 +4,11 @@ if (!file_exists("highscore.txt")){
 }
 $high = file_get_contents("highscore.txt");
 $highjs = json_decode($high);
-while(count($highjs) > 100){
-  unset($highjs[100]);
+$limit = 10;
+if (isset($_GET['limit']) && is_numeric($_GET['limit'])) {
+  $limit = intval($_GET['limit']);
 }
+$highjs = array_slice($highjs, 0, $limit);
 if (isset($_GET['format'])){
   if ($_GET['format'] == "lua") {
     for($i = 0; $i < count($highjs); $i++){
@@ -16,11 +18,11 @@ if (isset($_GET['format'])){
       echo "\n";
     }
   } else {
-    echo $high;
+    echo json_encode($highjs);
     echo "\n";
   }
 } else {
-  echo $high;
+  echo json_encode($highjs);
   echo "\n";
 }
 ?>

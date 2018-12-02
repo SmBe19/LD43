@@ -56,9 +56,11 @@ func _process(delta):
 		$Sprite.position = get_viewport().get_mouse_position() * 0.5
 
 func _on_Surgery_failed_puzzle():
+	if receiver != null:
+		receiver.die()
 	self.reset()
 
 func _on_Surgery_finished_puzzle():
 	if receiver != null:
 		receiver.receive_organ(organ)
-	reset()
+	self.reset()

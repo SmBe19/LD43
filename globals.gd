@@ -7,7 +7,7 @@ var organ_drag_drop_enabled = true
 var game_time = 0
 
 var death_speed = 1
-var death_speed_acc = 0.01
+var death_speed_acc = 0.02
 
 var chop_difficulty = 1
 var chop_level = 1
@@ -15,7 +15,7 @@ var chop_level = 1
 var money = 0
 var score = 0
 
-var fail_reason = ""
+var fail_reason = "fired for low self-esteem"
 
 func reset():
 	organ_drag_drop_enabled = true
@@ -30,9 +30,12 @@ func start_game():
 	reset()
 	get_tree().change_scene("res://scn/Root.tscn")
 	fail_reason = ""
-
-func main_menu(fail=""):
+	
+func end_menu(fail=""):
 	fail_reason = fail
+	get_tree().change_scene("res://scn/EndMenu.tscn")
+
+func main_menu():
 	get_tree().change_scene("res://scn/MainMenu.tscn")
 
 func exit_game():

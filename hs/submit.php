@@ -17,9 +17,7 @@ if (isset($_GET['username']) && isset($_GET['score']) && is_numeric($_GET['score
     $high = json_decode($highfile);
     $high[] = (object) array(name => sanitize($username), score => $score);
     usort($high, "cmp");
-    while(count($high) > 100){
-      unset($high[100]);
-    }
+    $high = array_slice($high, 0, 100);
     file_put_contents("highscore.txt", json_encode($high));
     echo "Thx";
   }

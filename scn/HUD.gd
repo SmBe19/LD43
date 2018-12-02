@@ -15,7 +15,7 @@ func change_score(amount):
 	globals.score += amount
 	self.update_score_label()
 	if globals.score < 0:
-		globals.main_menu("fired for low esteem")
+		globals.end_menu("fired for low esteem")
 
 func subtract_waiting():
 	if waiting >= 1:
@@ -39,4 +39,4 @@ func _process(delta):
 	waitingSpeed += delta * waitingSpeedAcc
 	$Waiting.value = waiting
 	if waiting > $Waiting.max_value:
-		globals.main_menu("waiting room full")
+		globals.end_menu("waiting room full")

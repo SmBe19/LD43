@@ -45,7 +45,7 @@ pressed = false
 
 shortcut = SubResource( 2 )
 
-[node name="EndMenu" type="Node"]
+[node name="EndMenu" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -363,7 +363,7 @@ _sections_unfolded = [ "Textures", "Transform" ]
 
 [node name="FailReason" type="Label" parent="." index="1"]
 
-modulate = Color( 1, 0, 0, 1 )
+modulate = Color( 0.705882, 0.12549, 0.164706, 1 )
 anchor_left = 0.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -434,7 +434,7 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
-_sections_unfolded = [ "Focus", "Placeholder" ]
+_sections_unfolded = [ "Caret", "Focus", "Placeholder" ]
 
 [node name="HighScoreName" type="Label" parent="." index="4"]
 
@@ -454,8 +454,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Highscore
-Loading..."
+text = "Loading highscores..."
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
