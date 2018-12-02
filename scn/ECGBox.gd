@@ -28,7 +28,8 @@ func alive_faster(factor):
 func flat():
 	self.randomized_start("flat")
 	is_flat = true
-	$Flat.play()
+	if not muted:
+		$Flat.play()
 	$VolumeAnimation.play("flat")
 
 func off():

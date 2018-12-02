@@ -27,12 +27,16 @@ func change_score(amount):
 	if globals.score < 0:
 		globals.end_menu("fired for low esteem")
 
-func subtract_waiting():
+func subtract_waiting(force=false):
 	if waiting >= 1:
 		waiting -= 1
 		return true
 	else:
-		return false
+		if force:
+			waiting = 0
+			return true
+		else:
+			return false
 
 func update_score_label():
 	$Score.text = str(globals.score)
@@ -48,5 +52,6 @@ func _process(delta):
 	waiting += delta * waitingSpeed
 	waitingSpeed += delta * waitingSpeedAcc
 	$Waiting.value = waiting
+	$WaitingDudes.text = str(floor(waiting)) + "/" + str($Waiting.max_value-1)
 	if waiting > $Waiting.max_value:
-		globals.end_menu("you worked too slow")
+		globals.end_menu("you worked too slowly")

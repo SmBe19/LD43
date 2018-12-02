@@ -34,7 +34,7 @@ func start_moving():
 	feedback_text = ""
 	$BeltAnimation.play("Next")
 	$NextDude.randomize_organs()
-	$"/root/Root/HUD".subtract_waiting()
+	$"/root/Root/HUD".subtract_waiting(true)
 
 func stop_moving():
 	if score_change != 0:
