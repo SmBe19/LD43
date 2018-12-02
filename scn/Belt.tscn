@@ -274,6 +274,7 @@ offset = 0.0
 position = Vector2( 0, 180 )
 frames = SubResource( 1 )
 animation = "default"
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 
