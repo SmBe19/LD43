@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scn/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://img/tiles.png" type="Texture" id=2]
@@ -9,13 +9,43 @@
 [ext_resource path="res://img/scalpel.png" type="Texture" id=7]
 [ext_resource path="res://img/heart.png" type="Texture" id=8]
 [ext_resource path="res://img/blood1.png" type="Texture" id=9]
-[ext_resource path="res://img/button_box.png" type="Texture" id=10]
-[ext_resource path="res://img/btn_green.png" type="Texture" id=11]
-[ext_resource path="res://img/btn_green_pushed.png" type="Texture" id=12]
-[ext_resource path="res://img/btn_red.png" type="Texture" id=13]
-[ext_resource path="res://img/btn_red_pushed.png" type="Texture" id=14]
-[ext_resource path="res://scn/MainMenuSmallFont.tres" type="DynamicFont" id=15]
-[ext_resource path="res://scn/HUDFont.tres" type="DynamicFont" id=16]
+[ext_resource path="res://img/ecg_box.png" type="Texture" id=10]
+[ext_resource path="res://img/ecg/ecg_0.png" type="Texture" id=11]
+[ext_resource path="res://img/ecg/ecg_1.png" type="Texture" id=12]
+[ext_resource path="res://img/ecg/ecg_2.png" type="Texture" id=13]
+[ext_resource path="res://img/ecg/ecg_3.png" type="Texture" id=14]
+[ext_resource path="res://img/ecg/ecg_4.png" type="Texture" id=15]
+[ext_resource path="res://img/ecg/ecg_5.png" type="Texture" id=16]
+[ext_resource path="res://img/ecg/ecg_6.png" type="Texture" id=17]
+[ext_resource path="res://img/ecg/ecg_7.png" type="Texture" id=18]
+[ext_resource path="res://img/ecg/ecg_8.png" type="Texture" id=19]
+[ext_resource path="res://img/ecg/ecg_9.png" type="Texture" id=20]
+[ext_resource path="res://img/ecg/ecg_10.png" type="Texture" id=21]
+[ext_resource path="res://img/ecg/ecg_11.png" type="Texture" id=22]
+[ext_resource path="res://img/ecg/ecg_12.png" type="Texture" id=23]
+[ext_resource path="res://img/ecg/ecg_13.png" type="Texture" id=24]
+[ext_resource path="res://img/ecg/ecg_14.png" type="Texture" id=25]
+[ext_resource path="res://img/ecg/ecg_15.png" type="Texture" id=26]
+[ext_resource path="res://img/ecg/ecg_16.png" type="Texture" id=27]
+[ext_resource path="res://img/ecg/ecg_17.png" type="Texture" id=28]
+[ext_resource path="res://img/ecg/ecg_18.png" type="Texture" id=29]
+[ext_resource path="res://img/ecg/ecg_19.png" type="Texture" id=30]
+[ext_resource path="res://img/button_box.png" type="Texture" id=31]
+[ext_resource path="res://img/btn_green.png" type="Texture" id=32]
+[ext_resource path="res://img/btn_green_pushed.png" type="Texture" id=33]
+[ext_resource path="res://img/btn_red.png" type="Texture" id=34]
+[ext_resource path="res://img/btn_red_pushed.png" type="Texture" id=35]
+[ext_resource path="res://scn/MainMenuSmallFont.tres" type="DynamicFont" id=36]
+[ext_resource path="res://scn/HUDFont.tres" type="DynamicFont" id=37]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
 
 [node name="MainMenu" type="Node"]
 
@@ -62,7 +92,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="person3" type="Sprite" parent="GameRoot" index="3"]
 
-position = Vector2( 450, 60 )
+position = Vector2( 540, 40 )
 rotation = 1.5708
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
@@ -111,7 +141,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="blood2" type="Sprite" parent="GameRoot" index="10"]
 
-position = Vector2( 493.668, 133.406 )
+position = Vector2( 523.401, 122.128 )
 rotation = 3.14159
 texture = ExtResource( 9 )
 _sections_unfolded = [ "Transform" ]
@@ -133,10 +163,23 @@ rotation = 1.5708
 texture = ExtResource( 9 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="button_box1" type="Sprite" parent="GameRoot" index="14"]
+[node name="ecg_box" type="Sprite" parent="GameRoot" index="14"]
+
+position = Vector2( 347.928, 40.4392 )
+texture = ExtResource( 10 )
+
+[node name="ECG" type="AnimatedSprite" parent="GameRoot/ecg_box" index="0"]
+
+frames = SubResource( 1 )
+animation = "default"
+frame = 11
+playing = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="button_box1" type="Sprite" parent="GameRoot" index="15"]
 
 position = Vector2( 577.402, 285.552 )
-texture = ExtResource( 10 )
+texture = ExtResource( 31 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="btn_green" type="TextureButton" parent="GameRoot/button_box1" index="0"]
@@ -160,8 +203,8 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 12 )
+texture_normal = ExtResource( 32 )
+texture_pressed = ExtResource( 33 )
 _sections_unfolded = [ "Rect", "Textures", "Transform" ]
 
 [node name="btn_red" type="TextureButton" parent="GameRoot/button_box1" index="1"]
@@ -185,14 +228,14 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 13 )
-texture_pressed = ExtResource( 14 )
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 35 )
 _sections_unfolded = [ "Textures", "Transform" ]
 
-[node name="button_box2" type="Sprite" parent="GameRoot" index="15"]
+[node name="button_box2" type="Sprite" parent="GameRoot" index="16"]
 
 position = Vector2( 139.731, 37.569 )
-texture = ExtResource( 10 )
+texture = ExtResource( 31 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="btn_green" type="TextureButton" parent="GameRoot/button_box2" index="0"]
@@ -216,8 +259,8 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 12 )
+texture_normal = ExtResource( 32 )
+texture_pressed = ExtResource( 33 )
 _sections_unfolded = [ "Rect", "Textures", "Transform" ]
 
 [node name="btn_red" type="TextureButton" parent="GameRoot/button_box2" index="1"]
@@ -241,14 +284,14 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 13 )
-texture_pressed = ExtResource( 14 )
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 35 )
 _sections_unfolded = [ "Textures", "Transform" ]
 
-[node name="button_box3" type="Sprite" parent="GameRoot" index="16"]
+[node name="button_box3" type="Sprite" parent="GameRoot" index="17"]
 
 position = Vector2( 44.8097, 300.048 )
-texture = ExtResource( 10 )
+texture = ExtResource( 31 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="btn_green" type="TextureButton" parent="GameRoot/button_box3" index="0"]
@@ -272,8 +315,8 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 12 )
+texture_normal = ExtResource( 32 )
+texture_pressed = ExtResource( 33 )
 _sections_unfolded = [ "Rect", "Textures", "Transform" ]
 
 [node name="btn_red" type="TextureButton" parent="GameRoot/button_box3" index="1"]
@@ -297,8 +340,8 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 13 )
-texture_pressed = ExtResource( 14 )
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 35 )
 _sections_unfolded = [ "Textures", "Transform" ]
 
 [node name="FailReason" type="Label" parent="." index="1"]
@@ -316,7 +359,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 15 )
+custom_fonts/font = ExtResource( 36 )
 text = "quote"
 align = 1
 percent_visible = 1.0
@@ -341,7 +384,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 37 )
 text = "Organic Harvest"
 align = 1
 percent_visible = 1.0

@@ -1,6 +1,7 @@
 extends Node2D
 
 var active_chop = null
+var visible_blood = 0
 
 func on_take_organ(dude, organ):
 	$ActiveOrgan.set(dude, organ)
@@ -16,6 +17,13 @@ func on_start_chop(dude):
 func _ready():
 	$Surgery.visible = false
 	$ChopChop.visible = false
+	for i in range(1, $Background.get_child_count()):
+		$Background.get_child(i).visible = false
+
+func add_blood():
+	if visible_blood < $Background.get_child_count() - 1:
+		$Background.get_child(visible_blood+1).visible = true
+		visible_blood += 1
 
 func _on_BlackMarket_buy_organ(organ):
 	$ActiveOrgan.set(null, organ)

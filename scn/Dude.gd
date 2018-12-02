@@ -122,6 +122,7 @@ func die():
 	alive = false
 	alive_since = max_lifetime
 	$LifeBar.value = 0
+	$"..".playECG("flat")
 	self.apply_organs()
 
 func _process(delta):

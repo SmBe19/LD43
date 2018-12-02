@@ -25,6 +25,8 @@ func start_surgery(entries, colors):
 func finish_surgery(result):
 	globals.organ_drag_drop_enabled = true
 	$ShowHideAnimation.play("Hide")
+	if randf() < 0.1:
+		$"/root/Root/GameRoot".add_blood()
 	emit_signal(result)
 	
 func hiding_finished():

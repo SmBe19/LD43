@@ -48,7 +48,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Root" type="Node"]
+[node name="Root" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -59,6 +59,9 @@ script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Background" type="Node2D" parent="GameRoot" index="0"]
+
+z_index = -10
+_sections_unfolded = [ "Z Index" ]
 
 [node name="TextureRect" type="TextureRect" parent="GameRoot/Background" index="0"]
 
@@ -110,7 +113,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="blood5" type="Sprite" parent="GameRoot/Background" index="5"]
 
-position = Vector2( 438.073, 233.174 )
+position = Vector2( 162.493, 141.314 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
@@ -123,30 +126,120 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="blood7" type="Sprite" parent="GameRoot/Background" index="7"]
 
-position = Vector2( 284.472, 284.991 )
+position = Vector2( 258.584, 265.784 )
 rotation = 3.14159
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood8" type="Sprite" parent="GameRoot/Background" index="8"]
+
+position = Vector2( 407.23, 240.731 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood9" type="Sprite" parent="GameRoot/Background" index="9"]
+
+position = Vector2( 68.1833, 303.363 )
+rotation = -1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood10" type="Sprite" parent="GameRoot/Background" index="10"]
+
+position = Vector2( 339.588, 314.219 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood11" type="Sprite" parent="GameRoot/Background" index="11"]
+
+position = Vector2( 426.437, 38.6391 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood12" type="Sprite" parent="GameRoot/Background" index="12"]
+
+position = Vector2( 574.249, 72.8778 )
+rotation = -1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood13" type="Sprite" parent="GameRoot/Background" index="13"]
+
+position = Vector2( 366.311, 87.9095 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood14" type="Sprite" parent="GameRoot/Background" index="14"]
+
+position = Vector2( 31.4394, 117.138 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood15" type="Sprite" parent="GameRoot/Background" index="15"]
+
+position = Vector2( 426.438, 170.583 )
+rotation = -1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood16" type="Sprite" parent="GameRoot/Background" index="16"]
+
+position = Vector2( 427.273, 318.395 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood17" type="Sprite" parent="GameRoot/Background" index="17"]
+
+position = Vector2( 332.907, 191.461 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood18" type="Sprite" parent="GameRoot/Background" index="18"]
+
+position = Vector2( 158.373, 318.395 )
+rotation = -1.5708
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood19" type="Sprite" parent="GameRoot/Background" index="19"]
+
+position = Vector2( 98.2466, 189.791 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="blood20" type="Sprite" parent="GameRoot/Background" index="20"]
+
+position = Vector2( 234.367, 52.8356 )
+rotation = 1.5708
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Belts" type="Node2D" parent="GameRoot" index="1"]
 
+z_index = -5
 script = ExtResource( 5 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 start_belt = 2
 max_belt = 6
 
 [node name="Belt" parent="GameRoot/Belts" index="0" instance=ExtResource( 6 )]
 
+_sections_unfolded = [ "Transform", "Z Index" ]
+
 [node name="BlackMarket" parent="GameRoot" index="2" instance=ExtResource( 7 )]
 
 position = Vector2( 550, 270 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="ActiveOrgan" type="Node2D" parent="GameRoot" index="3"]
 
 editor/display_folded = true
 script = ExtResource( 8 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Visibility", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="GameRoot/ActiveOrgan" index="0"]
 
@@ -166,13 +259,13 @@ blend_times = [  ]
 
 visible = false
 position = Vector2( 320, 180 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="ChopChop" parent="GameRoot" index="5" instance=ExtResource( 10 )]
 
 visible = false
 position = Vector2( 320, 180 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="HUD" parent="." index="1" instance=ExtResource( 11 )]
 

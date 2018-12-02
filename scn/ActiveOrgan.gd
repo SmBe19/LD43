@@ -15,6 +15,8 @@ var textures = {
 const entries = [6, 4, 4, 2, 2, 2]
 
 func set(dude, organ):
+	if dude != null and active:
+		dude.receive_organ(self.organ)
 	reset()
 	self.active = true
 	self.dude = dude

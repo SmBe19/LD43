@@ -72,6 +72,8 @@ func can_buy():
 
 func do_blood():
 	if use_blood:
+		if randf() < 0.1:
+			$"/root/Root/GameRoot".add_blood()
 		$bloodParticles.restart()
 
 func to_nice_local(position):
