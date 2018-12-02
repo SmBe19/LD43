@@ -39,4 +39,4 @@ func _process(delta):
 	waitingSpeed += delta * waitingSpeedAcc
 	$Waiting.value = waiting
 	if waiting > $Waiting.max_value:
-		globals.end_menu("waiting room full")
+		globals.end_menu("you worked too slow")

@@ -89,7 +89,7 @@ pressed = false
 
 shortcut = SubResource( 3 )
 
-[node name="EndMenu" type="Node"]
+[node name="EndMenu" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -140,7 +140,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 6 )
 animation = "default"
-frame = 1
+frame = 4
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -442,7 +442,6 @@ texture = ExtResource( 21 )
 
 frames = SubResource( 5 )
 animation = "default"
-frame = 7
 playing = true
 _sections_unfolded = [ "Transform" ]
 

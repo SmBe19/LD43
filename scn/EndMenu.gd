@@ -53,7 +53,7 @@ func _on_HighscoreRequest_request_completed(result, response_code, headers, body
 		var username = $NickName.text
 		if len(username) == 0:
 			username = "You"
-		username = "-> " + username + " <-"
+		var username_arr = "-> " + username + " <-"
 		var score = globals.max_score
 		var high = JSON.parse(body.get_string_from_utf8())
 		var textUsers = ""
@@ -64,7 +64,7 @@ func _on_HighscoreRequest_request_completed(result, response_code, headers, body
 			ress.pop_back()
 		for res in ress:
 			if not found and res.score <= score:
-				textUsers += username + "\n"
+				textUsers += username_arr + "\n"
 				textScore += str(score) + "\n"
 				found = true
 			if res.name == username and int(res.score) == score:
