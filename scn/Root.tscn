@@ -47,7 +47,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Root" type="Node"]
+[node name="Root" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -137,8 +137,6 @@ start_belt = 2
 max_belt = 6
 
 [node name="Belt" parent="GameRoot/Belts" index="0" instance=ExtResource( 6 )]
-
-moving_speed = 182
 
 [node name="BlackMarket" parent="GameRoot" index="2" instance=ExtResource( 7 )]
 
