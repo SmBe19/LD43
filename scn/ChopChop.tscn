@@ -140,6 +140,7 @@ expand = true
 
 [node name="scalpel" type="Sprite" parent="Wrapper/tol" index="0"]
 
+visible = false
 position = Vector2( 14, 14 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]

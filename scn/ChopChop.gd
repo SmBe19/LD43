@@ -11,6 +11,13 @@ const chops = [
 	preload("res://img/chopchop/chop5.png"),
 	preload("res://img/chopchop/chop6.png"),
 	preload("res://img/chopchop/chop7.png"),
+	preload("res://img/chopchop/chop8.png"),
+	preload("res://img/chopchop/chop9.png"),
+	preload("res://img/chopchop/chop10.png"),
+	preload("res://img/chopchop/chop11.png"),
+	preload("res://img/chopchop/chop12.png"),
+	preload("res://img/chopchop/chop13.png"),
+	preload("res://img/chopchop/chop14.png"),
 ]
 
 var cur_chop = -1
@@ -23,13 +30,13 @@ var chop_pos
 
 const width = 192
 const height = 144
-const chop_speed = 30
+const chop_speed = 40
 const border = 5
-const its_fine = [0, 30, 200]
+const its_fine = [0, 30, 150]
 
 func start_chop():
 	reset()
-	cur_chop = randi()%len(chops)
+	cur_chop = randi()%min(len(chops), globals.chop_difficulty)
 	$Wrapper/Path.texture = chops[cur_chop]
 	visible = true
 	was_down = false

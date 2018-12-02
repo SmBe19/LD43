@@ -9,8 +9,8 @@ var orig_organs = {}
 var alive = false
 var chopped = false
 var alive_since = 0
-const base_lifetime = 40
-const lifetimes = [50, 40, 40, 15, 15, 15]
+const base_lifetime = 60
+const lifetimes = [60, 50, 50, 20, 20, 20]
 var max_lifetime = 100
 
 onready var organ_objs = [$brain, $heart, $lungs, $liver, $lkidney, $rkidney]
