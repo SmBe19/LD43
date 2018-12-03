@@ -156,9 +156,9 @@ func _process(delta):
 		if not was_down and is_down:
 			$Wrapper/bloodParticles.emitting = true
 			cut_path = Image.new()
-			cut_path.create(width, height, false, Image.FORMAT_RGBAF)
+			cut_path.create(width, height, false, Image.FORMAT_RGBA8)
 			cut_path_tex = ImageTexture.new()
-			cut_path_tex.create(width, height, Image.FORMAT_RGBAF, 0)
+			cut_path_tex.create(width, height, Image.FORMAT_RGBA8, 0)
 			cut_path_tex.set_data(cut_path)
 			$Wrapper/CutPath.texture = cut_path_tex
 			
