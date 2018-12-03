@@ -1,7 +1,7 @@
 extends Node
 
 export(float) var waitingSpeed = 0.05
-export(float) var waitingSpeedAcc = 0.0005
+export(float) var waitingSpeedAcc = 0.0001
 var waiting = 0
 
 const val_change = preload("res://scn/ValueChange.tscn")
@@ -55,3 +55,9 @@ func _process(delta):
 	$WaitingDudes.text = str(floor(waiting)) + "/" + str($Waiting.max_value-1)
 	if waiting > $Waiting.max_value:
 		globals.end_menu("you worked too slowly")
+
+func _on_MuteButton_toggled(button_pressed):
+	if button_pressed:
+		MusicScene.get_node("Song").stop()
+	else:
+		MusicScene.get_node("Song").play()

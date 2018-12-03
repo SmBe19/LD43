@@ -270,6 +270,8 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="HUD" parent="." index="1" instance=ExtResource( 11 )]
 
+waitingSpeedAcc = 0.0001
+
 [connection signal="buy_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_buy_organ"]
 
 [connection signal="sell_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_sell_organ"]

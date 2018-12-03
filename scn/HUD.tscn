@@ -66,7 +66,7 @@ anti_aliasing_size = 1
 
 script = ExtResource( 1 )
 waitingSpeed = 0.05
-waitingSpeedAcc = 0.0005
+waitingSpeedAcc = 0.0001
 
 [node name="ScoreTitle" type="Label" parent="." index="0"]
 
@@ -213,5 +213,7 @@ group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 _sections_unfolded = [ "Rect", "Textures" ]
+
+[connection signal="toggled" from="MuteButton" to="." method="_on_MuteButton_toggled"]
 
 
