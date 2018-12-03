@@ -1,6 +1,6 @@
 extends Node
 
-export(float) var waitingSpeed = 0.02
+export(float) var waitingSpeed = 0.03
 export(float) var waitingSpeedAcc = 0.0001
 var waiting = 0
 

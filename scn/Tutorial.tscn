@@ -1059,7 +1059,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Tutorial" type="Node" index="0"]
+[node name="Tutorial" type="Node"]
 
 pause_mode = 2
 script = ExtResource( 1 )

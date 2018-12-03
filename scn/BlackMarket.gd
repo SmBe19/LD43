@@ -38,10 +38,14 @@ func _input(event):
 				emit_signal("sell_organ")
 
 func belt_price():
-	return [0, 0, 1000, 5000, 20000, 100000, -1, -1, -1][$"../Belts".get_child_count()]
+	return [0, 0, 500, 1000, 2000, 5000, -1, -1, -1][$"../Belts".get_child_count()]
 
 func set_belt_price():
-	$beltWrapper/beltPrice.text = "$ " + str(belt_price()/1000) + "M"
+	var price = belt_price()
+	if price >= 1000:
+		$beltWrapper/beltPrice.text = "$ " + str(price/1000) + "M"
+	else:
+		$beltWrapper/beltPrice.text = "$ " + str(price) + "k"
 
 func saw_price():
 	return 1000
