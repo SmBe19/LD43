@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://scn/EndMenu.gd" type="Script" id=1]
 [ext_resource path="res://img/tiles.png" type="Texture" id=2]
@@ -45,7 +45,7 @@
 [ext_resource path="res://scn/HUDFont.tres" type="DynamicFont" id=43]
 [ext_resource path="res://fnt/dejavu/DejaVuSans.ttf" type="DynamicFontData" id=44]
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ null, null, null, null, null, null, ExtResource( 5 ), null, null, null, null, null, null, null, null, null, null, null, null, null, null ],
@@ -54,7 +54,7 @@ animations = [ {
 "speed": 1.0
 } ]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), null ],
@@ -63,7 +63,7 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ) ],
@@ -72,7 +72,7 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 
 size = 24
 use_mipmaps = false
@@ -80,7 +80,7 @@ use_filter = false
 font_data = ExtResource( 44 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 
 size = 12
 use_mipmaps = false
@@ -88,17 +88,25 @@ use_filter = false
 font_data = ExtResource( 44 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[sub_resource type="InputEventAction" id=3]
+[sub_resource type="InputEventAction" id=6]
 
 device = 0
 action = "ui_accept"
 pressed = false
 
-[sub_resource type="ShortCut" id=4]
+[sub_resource type="ShortCut" id=7]
 
-shortcut = SubResource( 3 )
+shortcut = SubResource( 6 )
 
-[node name="EndMenu" type="Node"]
+[sub_resource type="DynamicFont" id=8]
+
+size = 24
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 44 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[node name="EndMenu" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -140,9 +148,9 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="eyes" type="AnimatedSprite" parent="GameRoot/person1" index="1"]
 
-frames = SubResource( 7 )
+frames = SubResource( 1 )
 animation = "default"
-frame = 7
+frame = 19
 playing = true
 
 [node name="person2" type="Sprite" parent="GameRoot" index="2"]
@@ -154,9 +162,9 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="eyes" type="AnimatedSprite" parent="GameRoot/person2" index="0"]
 
-frames = SubResource( 6 )
+frames = SubResource( 2 )
 animation = "default"
-frame = 7
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -239,7 +247,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="blood3" type="Sprite" parent="GameRoot" index="12"]
 
-position = Vector2( 480.102, 327.853 )
+position = Vector2( 480.102, 310.168 )
 texture = ExtResource( 15 )
 
 [node name="blood4" type="Sprite" parent="GameRoot" index="13"]
@@ -249,7 +257,7 @@ texture = ExtResource( 15 )
 
 [node name="blood5" type="Sprite" parent="GameRoot" index="14"]
 
-position = Vector2( 137.109, 332.454 )
+position = Vector2( 137.109, 310.008 )
 rotation = 1.5708
 texture = ExtResource( 15 )
 _sections_unfolded = [ "Transform" ]
@@ -456,9 +464,9 @@ texture = ExtResource( 21 )
 
 [node name="ECG" type="AnimatedSprite" parent="GameRoot/ecg_box" index="0"]
 
-frames = SubResource( 5 )
+frames = SubResource( 3 )
 animation = "default"
-frame = 6
+frame = 12
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -553,7 +561,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Loading highscores..."
 percent_visible = 1.0
@@ -577,7 +585,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 2
 percent_visible = 1.0
@@ -602,10 +610,10 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 toggle_mode = false
 enabled_focus_mode = 2
-shortcut = SubResource( 4 )
+shortcut = SubResource( 7 )
 group = null
 text = "submit"
 flat = false
@@ -625,6 +633,31 @@ download_file = ""
 use_threads = false
 body_size_limit = -1
 max_redirects = 8
+
+[node name="Credits" type="Label" parent="." index="9"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -415.0
+margin_top = -43.0
+margin_right = 415.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 8 )
+text = "Game by Matteo Signer and Benjamin Schmid"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 [connection signal="pressed" from="GameRoot/button_box1/btn_green" to="." method="_on_btn_green_pressed"]
 

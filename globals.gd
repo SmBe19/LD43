@@ -15,7 +15,7 @@ var organ_drag_drop_enabled = true
 var game_time = 0
 
 var death_speed = 1
-var death_speed_acc = 0.02
+var death_speed_acc = 0.0001
 
 var chop_difficulty = 1
 var chop_level = 1
