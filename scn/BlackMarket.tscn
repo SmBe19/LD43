@@ -8,7 +8,7 @@
 [ext_resource path="res://img/belt_icon.png" type="Texture" id=6]
 [ext_resource path="res://img/saw1.png" type="Texture" id=7]
 
-[node name="BlackMarket" type="Node2D"]
+[node name="BlackMarket" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -54,7 +54,7 @@ use_blood = false
 
 position = Vector2( -33.3852, 31.8596 )
 organ_type = 5
-price = 188
+price = 212
 use_blood = false
 
 [node name="beltWrapper" type="Control" parent="." index="7"]
