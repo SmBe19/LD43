@@ -20,6 +20,8 @@ const chops = [
 	preload("res://img/chopchop/chop14.png"),
 ]
 
+var chop_data = []
+
 var cur_chop = -1
 var cut_path = null
 var cut_path_tex = null
@@ -51,6 +53,8 @@ func hide_finished():
 	visible = false
 
 func _ready():
+	for i in range(len(chops)):
+		chop_data.append(load_image_data("res://img/chopchop/chop" + str(i+1) + ".png"))
 	self.start_chop()
 
 func mouse_pos():
@@ -71,7 +75,7 @@ func reset():
 func draw(old_pos, new_pos):
 	var dir = (new_pos - old_pos).normalized()
 	var steps = ceil((new_pos - old_pos).length() / dir.length()) if dir.length() > 0 else 1
-	var path_tex = chops[cur_chop].get_data()
+	var path_tex = chop_data[cur_chop]
 	cut_path.lock()
 	path_tex.lock()
 	for i in range(steps):
@@ -99,12 +103,12 @@ func update_chop(delta):
 		if speeded.length() > diff.length():
 			speeded = diff
 		chop_pos = chop_pos + speeded
-	draw(old_pos, chop_pos)
 	$Wrapper/tol.position = chop_pos * 2
 	$Wrapper/bloodParticles.position = chop_pos * 2
+	draw(old_pos, chop_pos)
 
 func check_chop():
-	var path_tex = chops[cur_chop].get_data()
+	var path_tex = chop_data[cur_chop]
 	cut_path.lock()
 	path_tex.lock()
 	var in_range = false
@@ -173,4 +177,27 @@ func _process(delta):
 			$Wrapper/tol.position = mouse_pos() * 2
 			
 		was_down = is_down
+
+func load_image_data(filename):
+	# https://github.com/godotengine/godot/issues/19789
+	var cfg = ConfigFile.new()
+	cfg.load(filename + ".import")
+	var srcpath = cfg.get_value("remap", "path")
+	var fin = File.new()
+	fin.open(srcpath, File.READ)
+	
+	var header = fin.get_32()
+	var width = fin.get_32()
+	var height = fin.get_32()
+	var flags = fin.get_32()
+	var data_format = fin.get_32()
+	
+	var buffsize = width * height * 4
+	var imgdata = fin.get_buffer(buffsize)
+	
+	fin.close()
+	
+	var img = Image.new()
+	img.create_from_data(width, height, false, Image.FORMAT_RGBA8, imgdata)
+	return img
 	

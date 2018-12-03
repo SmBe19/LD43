@@ -150,7 +150,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 7
+frame = 2
 playing = true
 
 [node name="person2" type="Sprite" parent="GameRoot" index="2"]
@@ -164,7 +164,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 2
+frame = 10
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -466,7 +466,6 @@ texture = ExtResource( 21 )
 
 frames = SubResource( 3 )
 animation = "default"
-frame = 9
 playing = true
 _sections_unfolded = [ "Transform" ]
 

@@ -11,7 +11,7 @@ dest_files=[ "res://.import/chop8.png-f84bf56ce08f914b04fcb11a2393050b.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0

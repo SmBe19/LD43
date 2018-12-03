@@ -19,6 +19,15 @@ const textures = [
 	preload("res://img/rkidney.png"),
 ]
 
+onready var masks = [
+	load_image_data("res://img/organ_mask/brain.png"),
+	load_image_data("res://img/organ_mask/heart.png"),
+	load_image_data("res://img/organ_mask/lungs.png"),
+	load_image_data("res://img/organ_mask/liver.png"),
+	load_image_data("res://img/organ_mask/lkidney.png"),
+	load_image_data("res://img/organ_mask/rkidney.png"),
+]
+
 const width = 64
 const height = 64
 
@@ -54,7 +63,7 @@ func _ready():
 	$PriceLabel.visible = price > 0
 
 func should_accept_input(position):
-	var image = textures[organ_type].get_data()
+	var image = masks[organ_type]
 	image.lock()
 	var pixel = image.get_pixel(int(position.x), int(position.y))
 	image.unlock()
@@ -97,3 +106,26 @@ func _input(event):
 						self.do_blood()
 					else:
 						emit_signal("drop_organ", organ_type)
+
+func load_image_data(filename):
+	# https://github.com/godotengine/godot/issues/19789
+	var cfg = ConfigFile.new()
+	cfg.load(filename + ".import")
+	var srcpath = cfg.get_value("remap", "path")
+	var fin = File.new()
+	fin.open(srcpath, File.READ)
+	
+	var header = fin.get_32()
+	var width = fin.get_32()
+	var height = fin.get_32()
+	var flags = fin.get_32()
+	var data_format = fin.get_32()
+	
+	var buffsize = width * height * 4
+	var imgdata = fin.get_buffer(buffsize)
+	
+	fin.close()
+	
+	var img = Image.new()
+	img.create_from_data(width, height, false, Image.FORMAT_RGBA8, imgdata)
+	return img

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chop6.png-07e2f8adccd78ebcd5fc7cf9b4a945fa.stex"
+path="res://.import/rkidney.png-3853187301b87f0a3c7449d5d9aaa05c.stex"
 
 [deps]
 
-source_file="res://img/chopchop/chop6.png"
-dest_files=[ "res://.import/chop6.png-07e2f8adccd78ebcd5fc7cf9b4a945fa.stex" ]
+source_file="res://img/organ_mask/rkidney.png"
+dest_files=[ "res://.import/rkidney.png-3853187301b87f0a3c7449d5d9aaa05c.stex" ]
 
 [params]
 

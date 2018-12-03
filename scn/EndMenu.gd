@@ -48,7 +48,7 @@ func _on_SubmitRequest_request_completed(result, response_code, headers, body):
 
 func _on_HighscoreRequest_request_completed(result, response_code, headers, body):
 	if response_code != 200:
-		$HighScore.text = "Could not load highscores...\n\nYour score: " + str(globals.max_score)
+		$HighScoreName.text = "Could not load highscores...\n\nYour score: " + str(globals.max_score)
 	else:
 		var username = $NickName.text
 		if len(username) == 0:

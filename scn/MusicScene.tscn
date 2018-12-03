@@ -2,7 +2,7 @@
 
 [ext_resource path="res://msc/song001.ogg" type="AudioStream" id=1]
 
-[node name="MusicScene" type="Node" index="0"]
+[node name="MusicScene" type="Node"]
 
 [node name="Song" type="AudioStreamPlayer" parent="." index="0"]
 
