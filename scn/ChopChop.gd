@@ -98,11 +98,12 @@ func update_chop(delta):
 		chop_pos = new_pos
 	else:
 		var diff = new_pos - chop_pos
-		var normed = diff.normalized()
-		var speeded = normed * chop_speed * delta
-		if speeded.length() > diff.length():
-			speeded = diff
-		chop_pos = chop_pos + speeded
+		if diff.length() > 0:
+			var normed = diff.normalized()
+			var speeded = normed * chop_speed * delta
+			if speeded.length() > diff.length():
+				speeded = diff
+			chop_pos = chop_pos + speeded
 	$Wrapper/tol.position = chop_pos * 2
 	$Wrapper/bloodParticles.position = chop_pos * 2
 	draw(old_pos, chop_pos)
@@ -158,7 +159,8 @@ func _process(delta):
 	if cur_chop != -1:
 		var is_down = Input.is_mouse_button_pressed(BUTTON_LEFT)
 		if not was_down and is_down:
-			$Wrapper/bloodParticles.emitting = true
+			if OS.get_name() != "HTML5":
+				$Wrapper/bloodParticles.emitting = true
 			cut_path = Image.new()
 			cut_path.create(width, height, false, Image.FORMAT_RGBA8)
 			cut_path_tex = ImageTexture.new()

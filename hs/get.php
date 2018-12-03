@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 if (!file_exists("highscore.txt")){
   file_put_contents("highscore.txt", "[]");
 }

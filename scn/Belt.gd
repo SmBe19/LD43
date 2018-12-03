@@ -61,7 +61,10 @@ func can_do_action():
 
 func start_killing():
 	$ECGBox.off()
-	$BeltAnimation.play("Kill")
+	if OS.get_name() != "HTML5":
+		$BeltAnimation.play("Kill")
+	else:
+		$BeltAnimation.play("KillWithoutParticles")
 	if randf() < 0.1:
 		$"/root/Root/GameRoot".add_blood()
 

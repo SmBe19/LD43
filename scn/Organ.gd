@@ -83,7 +83,8 @@ func do_blood():
 	if use_blood:
 		if randf() < 0.1:
 			$"/root/Root/GameRoot".add_blood()
-		$bloodParticles.restart()
+		if OS.get_name() != "HTML5":
+			$bloodParticles.restart()
 
 func to_nice_local(position):
 	return position + Vector2(width/2, height/2)
