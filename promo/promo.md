@@ -2,8 +2,8 @@
 > kidney? Whatever your problem is, Dr. Dr. Ludwig and his team will gladly take
 > care of you and your organs. Just lay down on that conveyor belt over there and
 > wake up a different person*!
-> 
-> \* Terms and conditions may apply
+>
+> \* Terms and conditions apply
 
 The new advertising campaign is gaining traction and the waiting room is
 already full of people, Mr Ludwig! Now your part of the work begins: you have
@@ -25,3 +25,11 @@ Once you are done with a patient, a press of the green button will send them to
 the recovery room and bring in the next patient. Coincidentally, there is also
 an incinerator below (the hospital was built over a steel mill), but I don't
 see how you could use it.
+
+## How to start
+In the main menu press one of the green buttons to start the game. If you click on the scalpel there will be a tutorial.
+
+## Credits
+Design, Code, Audio by Matteo Signer and Benjamin Schmid with assistance by Philipp Wallimann.
+
+**Use the desktop version! The web version does not have any particles and is quite buggy.**

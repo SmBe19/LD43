@@ -72,7 +72,7 @@ func _on_HighscoreRequest_request_completed(result, response_code, headers, body
 			textUsers += res.name + "\n"
 			textScore += str(res.score) + "\n"
 		if not found:
-			textUsers += username + "\n"
+			textUsers += username_arr + "\n"
 			textScore += str(score) + "\n"
 		$HighScoreName.text = textUsers
 		$HighScoreScore.text = textScore
