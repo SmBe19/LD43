@@ -1,6 +1,6 @@
 extends Node
 
-export(float) var waitingSpeed = 0.05
+export(float) var waitingSpeed = 0.02
 export(float) var waitingSpeedAcc = 0.0001
 var waiting = 0
 
@@ -25,7 +25,7 @@ func change_score(amount):
 	add_child(change)
 	self.update_score_label()
 	if globals.score < 0:
-		globals.end_menu("fired for low esteem")
+		globals.end_menu("Fired for low esteem.")
 
 func subtract_waiting(force=false):
 	if waiting >= 1:
@@ -54,7 +54,7 @@ func _process(delta):
 	$Waiting.value = waiting
 	$WaitingDudes.text = str(floor(waiting)) + "/" + str($Waiting.max_value-1)
 	if waiting > $Waiting.max_value:
-		globals.end_menu("you worked too slowly")
+		globals.end_menu("You worked too slowly.")
 
 func _on_MuteButton_toggled(button_pressed):
 	if button_pressed:

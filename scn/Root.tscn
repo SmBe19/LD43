@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scn/Root.gd" type="Script" id=1]
 [ext_resource path="res://scn/GameRoot.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scn/Surgery.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scn/ChopChop.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scn/HUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scn/Tutorial.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -270,7 +271,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="HUD" parent="." index="1" instance=ExtResource( 11 )]
 
-waitingSpeedAcc = 0.0001
+[node name="Tutorial" parent="." index="2" instance=ExtResource( 12 )]
 
 [connection signal="buy_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_buy_organ"]
 

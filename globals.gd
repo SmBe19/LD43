@@ -24,6 +24,8 @@ var money = 1000000
 var score = 1000 setget score_set, score_get
 var max_score = 0
 
+var tutorial = false
+
 var fail_reason = "fired for low self-esteem"
 
 func score_set(val):
@@ -42,11 +44,13 @@ func reset():
 	money = 250
 	score = 20
 	max_score = 20
+	tutorial = false
 
-func start_game():
+func start_game(tutorial=false):
 	reset()
-	get_tree().change_scene("res://scn/Root.tscn")
 	fail_reason = ""
+	self.tutorial = tutorial
+	get_tree().change_scene("res://scn/Root.tscn")
 	
 func end_menu(fail=""):
 	fail_reason = fail

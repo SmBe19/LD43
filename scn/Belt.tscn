@@ -82,7 +82,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Emission Shape" ]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 
 size = 24
 use_mipmaps = false
@@ -90,7 +90,7 @@ use_filter = false
 font_data = ExtResource( 13 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
 length = 3.0
 loop = false
@@ -206,7 +206,7 @@ tracks/8/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 
 resource_name = "Next"
 length = 4.0
@@ -426,7 +426,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "Hey, you forgot something!"
 autowrap = true
 percent_visible = 1.0
@@ -448,8 +448,8 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Kill = SubResource( 5 )
-anims/Next = SubResource( 8 )
+anims/Kill = SubResource( 6 )
+anims/Next = SubResource( 7 )
 blend_times = [  ]
 
 [node name="MovingSound" type="AudioStreamPlayer2D" parent="." index="11"]

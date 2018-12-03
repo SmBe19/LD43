@@ -15,6 +15,9 @@ func _on_btn_red_pressed():
 func _on_btn_green_pressed():
 	globals.start_game()
 
+func _on_scalpel_pressed():
+	globals.start_game(true)
+
 func random_text():
 	$FailReason.text = quotes[randi()%len(quotes)]
 

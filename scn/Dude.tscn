@@ -163,6 +163,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 3 )
 animation = "default"
+frame = 2
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -170,7 +171,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 4 )
 animation = "default"
-frame = 10
+frame = 5
 playing = true
 
 [node name="sunglasses" type="Sprite" parent="." index="11"]
