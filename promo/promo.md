@@ -1,6 +1,6 @@
 > Do you have a missing brain? Have you ever felt like you have one excess
 > kidney? Whatever your problem is, Dr. Dr. Ludwig and his team will gladly take
-> care of you and your organs. Just lay down on that conveyer belt over there and
+> care of you and your organs. Just lay down on that conveyor belt over there and
 > wake up a different person*!
 > 
 > \* Terms and conditions may apply
@@ -11,3 +11,17 @@ to see that every organ finds it's right place and that the patients leave the
 operating room as healthy as possible.
 
 ## How to play
+
+Patients will enter the OR on one of several conveyor belts. You will have to
+cut them open and do some organ transplants. To open up a patient, you will
+have to cut along a marked line on their body in order to not damage any organs.
+To transplant the organ itself, just drag it over to its new spot and connect
+the blood vessels. Be careful to connect arteries to arteries and veins to veins!
+
+There's also the possibility of - ahem - 'acquiring' and 'disposing' of organs
+through other means.
+
+Once you are done with a patient, a press of the green button will send them to
+the recovery room and bring in the next patient. Coincidentally, there is also
+an incinerator below (the hospital was built over a steel mill), but I don't
+see how you could use it.
