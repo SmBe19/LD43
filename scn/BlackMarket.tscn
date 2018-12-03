@@ -8,7 +8,7 @@
 [ext_resource path="res://img/belt_icon.png" type="Texture" id=6]
 [ext_resource path="res://img/saw1.png" type="Texture" id=7]
 
-[node name="BlackMarket" type="Node2D" index="0"]
+[node name="BlackMarket" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -19,42 +19,42 @@ texture = ExtResource( 2 )
 [node name="brain" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( -36.2357, -67.9421 )
-price = 50
+price = 52
 use_blood = false
 
 [node name="heart" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( -53.0698, -22.1645 )
 organ_type = 1
-price = 130
+price = 119
 use_blood = false
 
 [node name="lungs" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 6.21524, -43.372 )
 organ_type = 2
-price = 60
+price = 59
 use_blood = false
 
 [node name="liver" parent="." index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 4.63966, -11.2229 )
 organ_type = 3
-price = 170
+price = 172
 use_blood = false
 
 [node name="lkidney" parent="." index="5" instance=ExtResource( 3 )]
 
-position = Vector2( -46.2759, 73.074 )
+position = Vector2( -47.3514, 12.1312 )
 organ_type = 4
-price = 200
+price = 212
 use_blood = false
 
 [node name="rkidney" parent="." index="6" instance=ExtResource( 3 )]
 
 position = Vector2( -33.3852, 31.8596 )
 organ_type = 5
-price = 200
+price = 188
 use_blood = false
 
 [node name="beltWrapper" type="Control" parent="." index="7"]
@@ -63,10 +63,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -66.0
-margin_top = -4.0
-margin_right = -26.0
-margin_bottom = 36.0
+margin_left = -60.0
+margin_top = 63.0
+margin_right = -20.0
+margin_bottom = 103.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -132,9 +132,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 36.0
-margin_right = 40.0
-margin_bottom = 76.0
+margin_left = -1.0
+margin_top = 37.0
+margin_right = 39.0
+margin_bottom = 77.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0

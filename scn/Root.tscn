@@ -49,7 +49,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Root" type="Node"]
+[node name="Root" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -272,6 +272,7 @@ _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 [node name="HUD" parent="." index="1" instance=ExtResource( 11 )]
 
 waitingSpeed = 0.02
+waitingSpeedAcc = 0.0005
 
 [node name="Tutorial" parent="." index="2" instance=ExtResource( 12 )]
 
@@ -279,11 +280,15 @@ waitingSpeed = 0.02
 
 [connection signal="sell_organ" from="GameRoot/BlackMarket" to="GameRoot" method="_on_BlackMarket_sell_organ"]
 
+[connection signal="cancel_puzzle" from="GameRoot/Surgery" to="GameRoot/ActiveOrgan" method="_on_Surgery_cancel_puzzle"]
+
 [connection signal="failed_puzzle" from="GameRoot/Surgery" to="GameRoot/ActiveOrgan" method="_on_Surgery_failed_puzzle"]
 
 [connection signal="finished_puzzle" from="GameRoot/Surgery" to="GameRoot/ActiveOrgan" method="_on_Surgery_finished_puzzle"]
 
 [connection signal="start_puzzle" from="GameRoot/Surgery" to="GameRoot/BlackMarket" method="_on_Surgery_start_puzzle"]
+
+[connection signal="chop_cancel" from="GameRoot/ChopChop" to="GameRoot" method="_on_ChopChop_chop_cancel"]
 
 [connection signal="chop_failed" from="GameRoot/ChopChop" to="GameRoot" method="_on_ChopChop_chop_failed"]
 

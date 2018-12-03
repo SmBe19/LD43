@@ -15,7 +15,7 @@ var organ_drag_drop_enabled = true
 var game_time = 0
 
 var death_speed = 1
-var death_speed_acc = 0.0001
+var death_speed_acc = 0.001
 
 var chop_difficulty = 1
 var chop_level = 1
@@ -23,6 +23,8 @@ var chop_level = 1
 var money = 1000000
 var score = 1000 setget score_set, score_get
 var max_score = 0
+
+var surgery_data = [-1, -1]
 
 var tutorial = false
 
@@ -42,8 +44,8 @@ func reset():
 	chop_difficulty = 1
 	chop_level = 1
 	money = 250
-	score = 20
-	max_score = 20
+	score = 10
+	max_score = 10
 	tutorial = false
 
 func start_game(tutorial=false):

@@ -46,12 +46,11 @@ func can_drop_data(position, data):
 func drop_data(position, data):
 	if data >= 0:
 		emit_signal("value_drop", x, y, data)
-	
+
 func get_nice_mouse_position():
 	return get_local_mouse_position() - rect_size / 2
 
-func get_mouse_side():
-	var mouse_pos = get_nice_mouse_position()
+func get_side(mouse_pos):
 	if abs(mouse_pos.x) > abs(mouse_pos.y):
 		if mouse_pos.x > 0:
 			return 0
@@ -62,6 +61,10 @@ func get_mouse_side():
 			return 3
 		else:
 			return 1
+
+func get_mouse_side():
+	var mouse_pos = get_nice_mouse_position()
+	return get_side(mouse_pos)
 
 func get_type(side1, side2):
 	if side1 == side2:
@@ -107,6 +110,7 @@ func _on_SurgeryRect_mouse_entered():
 	if can_change:
 		if Input.is_mouse_button_pressed(BUTTON_LEFT) and in_side == -1:
 			in_side = get_mouse_side()
+	globals.surgery_data.append([x, y])
 
 func _on_SurgeryRect_mouse_exited():
 	if can_change:
@@ -117,3 +121,4 @@ func _on_SurgeryRect_mouse_exited():
 				emit_signal("value_drop", x, y, type)
 	self_modulate = Color(1, 1, 1)
 	in_side = -1
+	globals.surgery_data.append([x, y])

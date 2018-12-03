@@ -40,7 +40,7 @@ func stop_moving():
 	if score_change != 0:
 		$"/root/Root/HUD".change_score(score_change)
 		if score_change > 0:
-			$"/root/Root/HUD".change_money(score_change*10)
+			$"/root/Root/HUD".change_money(score_change*30)
 	if feedback_text != "":
 		$Complaint/ComplaintText.text = feedback_text
 		$Complaint.visible = true

@@ -2,6 +2,7 @@ extends Node2D
 
 signal finished_puzzle
 signal failed_puzzle
+signal cancel_puzzle
 signal start_puzzle
 
 const width = 8
@@ -28,13 +29,51 @@ func finish_surgery(result):
 	if randf() < 0.1:
 		$"/root/Root/GameRoot".add_blood()
 	emit_signal(result)
-	
+
 func hiding_finished():
 	visible = false
 
 func _ready():
 	self.generate_field()
 	self.randomize_field(1, 1)
+
+func _input(event):
+	if visible:
+		if event.is_action("ui_accept"):
+			self.randomize_field(4, 2)
+		if event.is_action("ui_cancel"):
+			get_tree().set_input_as_handled()
+			finish_surgery("cancel_puzzle")
+
+var mouse_down = false
+
+func to_vec(val):
+	return Vector2(val[0], val[1])
+
+func _process(delta):
+	if visible:
+		var is_down = Input.is_mouse_button_pressed(BUTTON_LEFT)
+		if is_down and not mouse_down:
+			globals.surgery_data = []
+		if not is_down and mouse_down:
+			var new_data = []
+			for dat in globals.surgery_data:
+				if len(new_data) == 0:
+					new_data.append(dat)
+				elif dat != new_data[-1]:
+					if new_data[-1][0] != dat[0] and new_data[-1][1] != dat[1]:
+						new_data.append([new_data[-1][0], dat[1]])
+					new_data.append(dat)
+			for i in range(1, len(new_data)-1):
+				var in_side = rects[0][0].get_side(to_vec(new_data[i-1]) - to_vec(new_data[i]))
+				var out_side = rects[0][0].get_side(to_vec(new_data[i+1]) - to_vec(new_data[i]))
+				var type = rects[0][0].get_type(in_side, out_side)
+				if not is_border(new_data[i][0], new_data[i][1]):
+					field[new_data[i][1]][new_data[i][0]] = type
+					rects[new_data[i][1]][new_data[i][0]].value = type
+			globals.surgery_data = []
+			self.check_field()
+		mouse_down = is_down
 
 func is_border(x, y):
 	return x == 0 or x == width - 1 or y == 0 or y == height - 1

@@ -11,7 +11,7 @@ var chopped = false
 var add_ons = [false, false, false, false, false]
 var alive_since = 0
 const base_lifetime = 60
-const lifetimes = [60, 50, 50, 20, 20, 20]
+const lifetimes = [60, 40, 40, 10, 10, 10]
 var max_lifetime = 100
 
 onready var organ_objs = [$brain, $heart, $lungs, $liver, $lkidney, $rkidney]
@@ -26,12 +26,12 @@ func rand_bool(prob):
 	return randf() < prob
 
 func randomize_organs():
-	organs[globals.ORGANS.BRAIN] = rand_bool(0.8)
-	organs[globals.ORGANS.HEART] = rand_bool(0.8)
+	organs[globals.ORGANS.BRAIN] = rand_bool(0.7)
+	organs[globals.ORGANS.HEART] = rand_bool(0.6)
 	organs[globals.ORGANS.LUNGS] = rand_bool(0.5)
-	organs[globals.ORGANS.LIVER] = rand_bool(0.4)
-	organs[globals.ORGANS.LKIDNEY] = rand_bool(0.2)
-	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.2)
+	organs[globals.ORGANS.LIVER] = rand_bool(0.5)
+	organs[globals.ORGANS.LKIDNEY] = rand_bool(0.3)
+	organs[globals.ORGANS.RKIDNEY] = rand_bool(0.3)
 	for k in organs:
 		orig_organs[k] = organs[k]
 	add_ons = [rand_bool(0.1), rand_bool(0.05), rand_bool(0.05), rand_bool(0.05), rand_bool(0.05)]
@@ -73,7 +73,7 @@ func get_missing():
 func get_score():
 	if not alive:
 		return -11
-	var score = 3
+	var score = 2
 	var missing = len(self.get_missing())
 	for i in range(6):
 		if organs[i] and not orig_organs[i]:

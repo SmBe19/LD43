@@ -44,3 +44,6 @@ func _on_ChopChop_chop_finished():
 	if active_chop != null:
 		active_chop.chop()
 	active_chop = null
+
+func _on_ChopChop_chop_cancel():
+	active_chop = null

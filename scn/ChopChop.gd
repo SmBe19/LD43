@@ -2,6 +2,7 @@ extends Node2D
 
 signal chop_finished
 signal chop_failed
+signal chop_cancel
 
 const chops = [
 	preload("res://img/chopchop/chop1.png"),
@@ -32,7 +33,7 @@ var chop_pos
 
 const width = 192
 const height = 144
-const chop_speed = 40
+const chop_speed = 70
 const border = 5
 const its_fine = [0, 30, 150]
 
@@ -56,6 +57,12 @@ func _ready():
 	for i in range(len(chops)):
 		chop_data.append(load_image_data("res://img/chopchop/chop" + str(i+1) + ".png"))
 	self.start_chop()
+
+func _input(event):
+	if visible:
+		if event.is_action("ui_cancel"):
+			get_tree().set_input_as_handled()
+			finish_chopping("chop_cancel")
 
 func mouse_pos():
 	var pos = get_local_mouse_position()

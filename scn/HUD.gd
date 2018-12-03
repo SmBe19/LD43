@@ -1,7 +1,7 @@
 extends Node
 
-export(float) var waitingSpeed = 0.03
-export(float) var waitingSpeedAcc = 0.0001
+export(float) var waitingSpeed = 0.05
+export(float) var waitingSpeedAcc = 0.0005
 var waiting = 0
 
 const val_change = preload("res://scn/ValueChange.tscn")

@@ -66,3 +66,8 @@ func _on_Surgery_finished_puzzle():
 	if receiver != null:
 		receiver.receive_organ(organ)
 	self.reset()
+
+func _on_Surgery_cancel_puzzle():
+	if dude != null:
+		dude.receive_organ(organ)
+	self.reset()
