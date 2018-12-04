@@ -1,16 +1,30 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://msc/song001.ogg" type="AudioStream" id=1]
+[ext_resource path="res://scn/MusicScene.gd" type="Script" id=1]
+[ext_resource path="res://msc/LD43_021.ogg" type="AudioStream" id=2]
 
 [node name="MusicScene" type="Node"]
 
+script = ExtResource( 1 )
+
 [node name="Song" type="AudioStreamPlayer" parent="." index="0"]
 
-stream = ExtResource( 1 )
-volume_db = -8.0
+stream = ExtResource( 2 )
+volume_db = 2.0
 pitch_scale = 1.0
 autoplay = true
 mix_target = 0
 bus = "Master"
+
+[node name="NextSongTimer" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[connection signal="finished" from="Song" to="." method="_on_Song_finished"]
+
+[connection signal="timeout" from="NextSongTimer" to="." method="_on_NextSongTimer_timeout"]
 
 

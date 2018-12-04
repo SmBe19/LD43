@@ -47,6 +47,9 @@ func update_money_label():
 func _ready():
 	update_money_label()
 	update_score_label()
+	$WaitingAnimation.play("Blue")
+
+var col = 0
 
 func _process(delta):
 	waiting += delta * waitingSpeed
@@ -55,9 +58,21 @@ func _process(delta):
 	$WaitingDudes.text = str(floor(waiting)) + "/" + str($Waiting.max_value-1)
 	if waiting > $Waiting.max_value:
 		globals.end_menu("You worked too slowly.")
+	if waiting > 13:
+		if col != 2:
+			$WaitingAnimation.play("Red")
+			col = 2
+	elif waiting > 10:
+		if col != 1:
+			$WaitingAnimation.play("Orange")
+			col = 1
+	else:
+		if col != 0:
+			$WaitingAnimation.play("Blue")
+			col = 0
 
 func _on_MuteButton_toggled(button_pressed):
 	if button_pressed:
-		MusicScene.get_node("Song").stop()
+		MusicScene.stop()
 	else:
-		MusicScene.get_node("Song").play()
+		MusicScene.play()

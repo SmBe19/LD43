@@ -96,7 +96,7 @@ use_filter = false
 font_data = ExtResource( 44 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="EndMenu" type="Node" index="0"]
+[node name="EndMenu" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -141,7 +141,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 17
+frame = 13
 playing = true
 
 [node name="person2" type="Sprite" parent="GameRoot" index="2"]
@@ -155,7 +155,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 10
+frame = 3
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -457,7 +457,7 @@ texture = ExtResource( 21 )
 
 frames = SubResource( 3 )
 animation = "default"
-frame = 16
+frame = 11
 playing = true
 _sections_unfolded = [ "Transform" ]
 

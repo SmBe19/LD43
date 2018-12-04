@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scn/HUD.gd" type="Script" id=1]
 [ext_resource path="res://scn/HUDFont.tres" type="DynamicFont" id=2]
@@ -33,7 +33,7 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=5]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -90,7 +90,122 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
-[node name="HUD" type="Node"]
+[sub_resource type="Animation" id=4]
+
+resource_name = "Blue"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Waiting:custom_styles/fg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 5 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 1, 0.5625, 0, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 4
+border_width_right = 0
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
+
+[sub_resource type="Animation" id=7]
+
+resource_name = "Orange"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Waiting:custom_styles/fg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 6 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=8]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.705882, 0.12549, 0.164706, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 4
+border_width_right = 0
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
+
+[sub_resource type="Animation" id=9]
+
+resource_name = "Red"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Waiting:custom_styles/fg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 8 ) ]
+}
+
+[node name="HUD" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -192,13 +307,13 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-custom_styles/fg = SubResource( 1 )
+custom_styles/fg = SubResource( 5 )
 custom_styles/bg = SubResource( 2 )
 min_value = 0.0
 max_value = 17.0
 step = 1.0
 page = 0.0
-value = 0.0
+value = 4.0
 exp_edit = false
 rounded = false
 percent_visible = false
@@ -254,6 +369,18 @@ group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 _sections_unfolded = [ "Pause", "Rect", "Textures" ]
+
+[node name="WaitingAnimation" type="AnimationPlayer" parent="." index="7"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Blue = SubResource( 4 )
+anims/Orange = SubResource( 7 )
+anims/Red = SubResource( 9 )
+blend_times = [  ]
 
 [connection signal="toggled" from="MuteButton" to="." method="_on_MuteButton_toggled"]
 
