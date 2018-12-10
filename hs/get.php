@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
 if (!file_exists("highscore.txt")){
   file_put_contents("highscore.txt", "[]");
 }
