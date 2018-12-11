@@ -9,14 +9,20 @@ func submit_highscore(username, score):
 	# please don't submit fake scores, would be sad to take down the high score system
 	self.username = username
 	var magic = score % 17 * len(username) + floor(score / 17)
-	$SubmitRequest.request("http://ludumdare.games.smeanox.com/LD43/hs/submit.php?username=" + username + "&score=" + str(score) + "&magic=" + str(magic))
+	var protocol = "http:"
+	if OS.has_feature('JavaScript'):
+		protocol = JavaScript.eval("location.protocol")
+	$SubmitRequest.request(protocol + "//ludumdare.games.smeanox.com/LD43/hs/submit.php?username=" + username + "&score=" + str(score) + "&magic=" + str(magic))
 	$NickName.visible = false
 	$SubmitButton.visible = false
 	submitted = true
 	print("submit ", username, ": ", score)
 
 func get_highscore():
-	$HighscoreRequest.request("http://ludumdare.games.smeanox.com/LD43/hs/get.php")
+	var protocol = "http:"
+	if OS.has_feature('JavaScript'):
+		protocol = JavaScript.eval("location.protocol")
+	$HighscoreRequest.request(protocol + "//ludumdare.games.smeanox.com/LD43/hs/get.php")
 
 func _on_btn_red_pressed():
 	globals.main_menu()
